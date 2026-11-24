@@ -443,10 +443,10 @@ section{padding:65px 0}
 <!-- PROMO BAR (top of page) -->
 <div class="promo-bar">
   <div class="container promo-bar-inner">
-    <span class="pb-badge">🔥 FIRST 5 CLIENTS OF THE WEEK</span>
+    <span class="pb-badge">🔥 FIRST 5 NEW CLIENTS DAILY</span>
     <span><strong class="pb-title" id="promoTitle">Special SmartFix Offer</strong> <span class="pb-desc" id="promoDescription"></span></span>
-    <span class="pb-price" id="promoPrice">30% OFF</span>
-    <span class="pb-timer" id="promoTimerBar" title="Time left in today's 2-hour offer window">⏳ <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
+    <span class="pb-price" id="promoPrice">20% OFF</span>
+    <span class="pb-timer" id="promoTimerBar" title="Time left in today's 5-hour offer window">⏳ <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
     <a id="promoButton" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="pb-btn">Claim Offer ↗</a>
   </div>
 </div>
@@ -908,7 +908,7 @@ section{padding:65px 0}
 <section class="smartfix-promo">
   <div class="container">
     <div class="promo-inner">
-      <div class="promo-badge">🔥 FIRST 5 CLIENTS OF THE WEEK</div>
+      <div class="promo-badge">🔥 FIRST 5 NEW CLIENTS DAILY</div>
       <h2 id="promoTitleB">Special SmartFix Offer</h2>
       <p id="promoDescriptionB">Get professional digital support at a special promotional rate.</p>
       <div class="countdown" id="promoTimerSec">
@@ -916,9 +916,9 @@ section{padding:65px 0}
         <div><strong id="promoMinutesB">00</strong><span>MIN</span></div>
         <div><strong id="promoSecondsB">00</strong><span>SEC</span></div>
       </div>
-      <div class="promo-price"><span id="promoPriceB">30% OFF</span></div>
+      <div class="promo-price"><span id="promoPriceB">20% OFF</span></div>
       <a id="promoButtonB" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="promo-btn">Claim Offer ↗</a>
-      <small id="promoNote">For the first 5 clients of the week. Open 2 hours a day, Mon&ndash;Fri, 8:00&ndash;10:00 AM Zimbabwe time. Excludes monthly plans and emergency support.</small>
+      <small id="promoNote">For the first 5 new clients each day, open 5 hours a day (8:00 AM&ndash;1:00 PM Zimbabwe time) until 31 December. Excludes monthly plans and emergency support.</small>
     </div>
   </div>
 </section>
@@ -1198,9 +1198,9 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(link){
   });
 });
 
-/* PROMOTION TEXT (30% offer, first 5 clients of the week, 2-hour daily window) */
+/* PROMOTION TEXT (20% offer, first 5 new clients each day, 5-hour daily window, until 31 December) */
 const smartfixPromotions = [
-  { title:"30% OFF For Our First 5 Clients Of The Week", description:"Open 2 hours a day (8:00\u201310:00 AM), for the first 5 clients of the week, on one-off IT services, CV & document packages, graphics design and websites. Monthly IT plans and emergency support are not included.", price:"30% OFF", service:"any eligible service" }
+  { title:"20% OFF For Our First 5 New Clients Today", description:"Open 5 hours a day (8:00 AM\u20131:00 PM) until 31 December, for the first 5 new clients each day, on one-off IT services, CV & document packages, graphics design and websites. Monthly IT plans and emergency support are not included.", price:"20% OFF", service:"any eligible service" }
 ];
 
 let currentPromo = null;
@@ -1222,7 +1222,7 @@ function chooseRandomPromotion(){
   setText("promoPrice", currentPromo.price);
 
   const href = "https://wa.me/263773092198?text=" +
-    encodeURIComponent("Hello SmartFix, I want the 30% discount for the first 5 clients of the week. The service I need is: ");
+    encodeURIComponent("Hello SmartFix, I want the 20% discount for the first 5 new clients today. The service I need is: ");
   ["promoButton", "promoButtonB"].forEach(function(id){
     const el = document.getElementById(id);
     if (el) el.href = href;
@@ -1231,24 +1231,20 @@ function chooseRandomPromotion(){
   promoEndTime = new Date(now.getFullYear(), now.getMonth() + 1, 1).getTime() - 1000;
 }
 
-/* FIRST 5 CLIENTS OF THE WEEK
-   The offer window is open 2 hours a day, Monday to Friday, 8:00 AM to 10:00 AM Zimbabwe time (UTC+2).
-   The countdown only runs inside that window; the rest of the time it shows when the next window opens. */
+/* 20% OFF FOR THE FIRST 5 NEW CLIENTS EACH DAY
+   Every day, 8:00 AM to 1:00 PM Zimbabwe time (UTC+2) - a 5-hour countdown that restarts each morning.
+   The campaign ends on 31 December 2026; after that the promotion is hidden. */
 const HARARE_OFFSET_MS = 2 * 60 * 60 * 1000;
 const HOUR = 3600 * 1000;
 const DAY = 24 * HOUR;
 const WINDOW_START_H = 8;
-const WINDOW_END_H = 10;
+const WINDOW_END_H = 13;
+const CAMPAIGN_END = Date.UTC(2027, 0, 1); /* end of 31 December 2026, Zimbabwe time frame */
 
 function offerWindow(shifted){
   const d = new Date(shifted);
-  const midnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-  let day = midnight;
-  let dow = d.getUTCDay();
-  // after today's window closes (or on a weekend), move to the next weekday
-  if (shifted >= day + WINDOW_END_H * HOUR || dow === 0 || dow === 6) {
-    do { day += DAY; dow = new Date(day).getUTCDay(); } while (dow === 0 || dow === 6);
-  }
+  let day = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  if (shifted >= day + WINDOW_END_H * HOUR) day += DAY;
   return { opens: day + WINDOW_START_H * HOUR, closes: day + WINDOW_END_H * HOUR };
 }
 
@@ -1265,12 +1261,18 @@ function updatePromotionTimer(){
 
   const shifted = Date.now() + HARARE_OFFSET_MS;
   const w = offerWindow(shifted);
+
+  /* campaign over: hide the promo bar and promo section */
+  const ended = w.opens >= CAMPAIGN_END;
+  document.querySelectorAll(".promo-bar, .smartfix-promo").forEach(function(el){ el.style.display = ended ? "none" : ""; });
+  if (ended) return;
+
   const live = shifted >= w.opens && shifted < w.closes;
   const note = document.getElementById("promoNote");
   const liveHref = "https://wa.me/263773092198?text=" +
-    encodeURIComponent("Hello SmartFix, I want the 30% discount for the first 5 clients of the week. The service I need is: ");
+    encodeURIComponent("Hello SmartFix, I want the 20% discount for the first 5 new clients today. The service I need is: ");
   const offHref = "https://wa.me/263773092198?text=" +
-    encodeURIComponent("Hello SmartFix, please tell me when the next 30% discount window opens.");
+    encodeURIComponent("Hello SmartFix, please tell me when the next 20% discount window opens.");
 
   ["promoButton","promoButtonB"].forEach(function(id){
     const el = document.getElementById(id);
@@ -1279,18 +1281,16 @@ function updatePromotionTimer(){
   toggleTimers(live);
 
   if (!live) {
-    const when = new Date(w.opens).toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", timeZone:"UTC" });
-    setText("promoTitle", "Next 30% OFF window: " + when + ", 8:00 AM");
+    const sameDay = new Date(w.opens).getUTCDate() === new Date(shifted).getUTCDate();
+    const when = sameDay ? "today" : "tomorrow";
+    setText("promoTitle", "Next 20% OFF window opens " + when + " at 8:00 AM");
     setText("promoPrice", "COMING SOON");
-    setText("promoDescription", "Open 2 hours a day (8:00\u201310:00 AM Zimbabwe time) for the first 5 clients of the week.");
-    if (note) note.textContent = "The 30% offer is for the first 5 clients of the week and is open 2 hours a day, Mon\u2013Fri, 8:00\u201310:00 AM. Excludes monthly plans and emergency support.";
+    setText("promoDescription", "5 hours a day (8:00 AM\u20131:00 PM Zimbabwe time), for the first 5 new clients, until 31 December.");
+    if (note) note.textContent = "The 20% offer is for the first 5 new clients each day, open 8:00 AM\u20131:00 PM until 31 December. Excludes monthly plans and emergency support.";
     return;
   }
 
   setText("promoTitle", currentPromo.title);
   setText("promoPrice", currentPromo.price);
   setText("promoDescription", currentPromo.description);
-  if (note) note.textContent = "30% off for the first 5 clients of the week (excludes monthly plans and emergency support). Today's window closes at 10:00 AM, Zimbabwe time.";
-
-  const rem = Math.floor((w.closes - shifted) / 1000);
-  setText("promoHours",
+  if (note) note.textContent = "20% off for the first 5 new clients today (excludes monthly plans and emergency supp
