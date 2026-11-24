@@ -13,6 +13,9 @@
 <meta property="og:description" content="Fast, affordable remote IT support, CVs, graphics and websites in Zimbabwe.">
 <!-- Add once you upload a 1200x630 image: <meta property="og:image" content="https://YOUR-DOMAIN/share.jpg"> -->
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"SmartFix Remote","description":"Remote IT support, CV design, document typing, graphic design and website development in Zimbabwe.","telephone":"+263773092198","email":"smartfixremoteinfo@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Kaguvi Shopping Center","addressLocality":"Chegutu","addressCountry":"ZW"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"}],"areaServed":"Zimbabwe"}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -721,6 +724,39 @@ body.dark-mode .trust-strip{background:rgba(11,26,66,.7)}
 .promo-card{background:linear-gradient(160deg,#173a8f,#0a1f4d)}
 .footer-cta,footer{background:linear-gradient(180deg,#0a1f4d,#050d24)}
 ::selection{background:rgba(34,211,238,.35)}
+
+/* featured service of the day */
+.service-card.offer-service{border-color:var(--orange);box-shadow:0 0 0 3px rgba(194,65,12,.18),var(--shadow-md)}
+.offer-flag{position:absolute;top:14px;right:14px;padding:5px 10px;border-radius:999px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:.8px;animation:flagPulse 2.2s ease-in-out infinite}
+@keyframes flagPulse{0%,100%{box-shadow:0 0 0 0 rgba(194,65,12,.45)}60%{box-shadow:0 0 0 8px rgba(194,65,12,0)}}
+.pp-svc{font-size:11.5px;font-weight:800;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.95}
+.pp-svc:empty{display:none}
+@media(prefers-reduced-motion:reduce){.offer-flag{animation:none}}
+
+/* ===== LAUNCH FIXES ===== */
+/* pricing: badge no longer clipped, equal columns, no overlap on featured plan */
+.price-card{overflow:visible!important}
+.price-card.featured{transform:translateY(-10px)!important;z-index:2}
+.popular-badge{z-index:3;white-space:nowrap;top:-14px}
+.pricing-grid{align-items:stretch;gap:28px}
+.price-card{display:flex;flex-direction:column}
+.price-card .btn{margin-top:auto;align-self:flex-start}
+.price-list{margin-bottom:24px}
+.price small{white-space:nowrap}
+@media(max-width:950px){.price-card.featured{transform:none!important}.pricing-grid{gap:34px}}
+/* very small phones */
+@media(max-width:400px){
+  .values{grid-template-columns:1fr}
+  .about-content,.about-grid>*,.hero-grid>*,.contact-grid>*{min-width:0}
+  .price{font-size:36px}
+  .pkg-top{flex-wrap:wrap}
+  .pkg-price{font-size:19px}
+  .btn{padding:12px 16px}
+}
+.about-content p,.about-content h2,.section-heading p{overflow-wrap:anywhere}
+
+@media(max-width:400px){.audience-grid{grid-template-columns:1fr}.audience-item{padding:16px;flex-direction:row;justify-content:center;text-align:left}.audience-item .ic{margin:0}}
+.audience-item{min-width:0;overflow-wrap:anywhere}
 </style>
 </head>
 
@@ -755,6 +791,7 @@ body.dark-mode .trust-strip{background:rgba(11,26,66,.7)}
   </div>
   <button class="promo-pill" id="promoPill" type="button" aria-label="Show special offer details">
     <span class="pp-top"><svg class="ic" aria-hidden="true"><use href="#ic-flame"/></svg><b id="ppPrice">20% OFF</b><em id="ppSpots"></em></span>
+    <span class="pp-svc" id="ppSvc"></span>
     <span class="pp-time"><svg class="ic" aria-hidden="true"><use href="#ic-clock"/></svg><span id="ppLabel">Ends in</span> <strong id="ppClock">00:00:00</strong></span>
   </button>
 </aside>
@@ -1563,6 +1600,27 @@ function offerWindow(shifted){
   return { opens: day + WINDOW_START_H * HOUR, closes: day + WINDOW_END_H * HOUR };
 }
 
+/* DAILY FEATURED SERVICE: one service from the Services list is picked at random each day (Zimbabwe date),
+   the same for every visitor, and never the same as the day before. */
+function hashStr(str){ let h = 2166136261; for (let i = 0; i < str.length; i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function serviceNames(){ return Array.prototype.map.call(document.querySelectorAll("#services .service-card h3"), function(h){ return h.textContent.trim(); }); }
+function featuredService(dayKey){
+  const list = serviceNames(); if (!list.length) return null;
+  const prevKey = new Date(Date.parse(dayKey + "T00:00:00Z") - DAY).toISOString().slice(0,10);
+  let i = hashStr("smartfix-" + dayKey) % list.length;
+  if (i === hashStr("smartfix-" + prevKey) % list.length) i = (i + 1) % list.length;
+  return { name: list[i], index: i };
+}
+function markFeatured(feat, on){
+  document.querySelectorAll("#services .service-card").forEach(function(card, i){
+    const flag = card.querySelector(".offer-flag");
+    const show = on && feat && i === feat.index;
+    card.classList.toggle("offer-service", !!show);
+    if (show && !flag){ const f = document.createElement("span"); f.className = "offer-flag"; f.textContent = "20% OFF TODAY"; card.appendChild(f); }
+    if (!show && flag) flag.remove();
+  });
+}
+
 function updatePromotionTimer(){
   if (!promoEndTime) return;
   if (promoEndTime - Date.now() <= 0) chooseRandomPromotion();
@@ -1577,15 +1635,19 @@ function updatePromotionTimer(){
 
   const live = shifted >= w.opens && shifted < w.closes;
   const todayKey = new Date(shifted).toISOString().slice(0,10);
+  const feat = featuredService(todayKey);
+  const svcName = feat ? feat.name : "selected services";
   const taken = (SPOTS_API && apiOk && remoteTaken !== null) ? remoteTaken : (SPOTS_STATE.date === todayKey ? SPOTS_STATE.taken : 0);
   const left = Math.max(0, DAILY_SPOTS - taken);
   const full = live && left === 0;
   const open = live && !full;
   promoOpen = open;
+  markFeatured(feat, open);
+  const ppSvc = document.getElementById("ppSvc"); if (ppSvc) ppSvc.textContent = open ? svcName : "";
   const note = document.getElementById("promoNote");
 
   const openHref = "https://wa.me/263773092198?text=" +
-    encodeURIComponent("Hello SmartFix, I want the 20% discount for the first 5 new clients today. The service I need is: ");
+    encodeURIComponent("Hello SmartFix, I want today's 20% discount on " + svcName + " (first 5 new clients). ");
   const askHref = "https://wa.me/263773092198?text=" +
     encodeURIComponent("Hello SmartFix, please tell me when the next 20% discount window opens.");
 
@@ -1595,12 +1657,12 @@ function updatePromotionTimer(){
   });
 
   if (open) {
-    setText("promoTitle", currentPromo.title);
+    setText("promoTitle", "20% OFF " + svcName + " today");
     setText("promoPrice", currentPromo.price);
-    setText("promoDescription", currentPromo.description);
+    setText("promoDescription", "Today's featured service is " + svcName + ". 20% off for the first 5 new clients, 8:00 AM\u20131:00 PM Zimbabwe time, until 31 December. Monthly IT plans and emergency support are not included.");
     setText("promoSpots", left + " of " + DAILY_SPOTS + " spots left today");
     setText("promoCountLabel", "Ends in");
-    if (note) note.textContent = "20% off for the first 5 new clients today (excludes monthly plans and emergency support). Today's window closes at 1:00 PM, Zimbabwe time. Offer ends 31 December.";
+    if (note) note.textContent = "Today's 20% offer applies to " + svcName + " for the first 5 new clients (excludes monthly plans and emergency support). The window closes at 1:00 PM, Zimbabwe time. A new service is picked every day until 31 December.";
   } else if (full) {
     setText("promoTitle", "All 5 spots taken today. The next 20% OFF window opens tomorrow at 8:00 AM");
     setText("promoPrice", "FULLY BOOKED");
@@ -1612,7 +1674,7 @@ function updatePromotionTimer(){
     const sameDay = new Date(w.opens).getUTCDate() === new Date(shifted).getUTCDate();
     setText("promoTitle", "Next 20% OFF window opens " + (sameDay ? "today" : "tomorrow") + " at 8:00 AM");
     setText("promoPrice", "COMING SOON");
-    setText("promoDescription", "5 hours a day (8:00 AM\u20131:00 PM Zimbabwe time), for the first 5 new clients, until 31 December.");
+    setText("promoDescription", "A new service from our list gets 20% off every day. 5 hours a day (8:00 AM\u20131:00 PM Zimbabwe time), for the first 5 new clients, until 31 December.");
     setText("promoSpots", DAILY_SPOTS + " spots available each day");
     setText("promoCountLabel", "Opens in");
     if (note) note.textContent = "The 20% offer is for the first 5 new clients each day, open 8:00 AM\u20131:00 PM until 31 December. Excludes monthly plans and emergency support.";
@@ -1757,6 +1819,11 @@ document.querySelectorAll(".service-card, .price-card, .review-card, .process-ca
 
 /* cookies / Meta Pixel load automatically */
 if(window.loadMetaPixel)loadMetaPixel();
+
+/* offer card tucks itself into the small button after a few seconds so it never blocks the page */
+(function(){var box=document.getElementById("promoFloat");if(!box)return;
+  var hold=false;box.addEventListener("mouseenter",function(){hold=true;});box.addEventListener("focusin",function(){hold=true;});
+  setTimeout(function(){if(!hold)box.classList.add("collapsed");},12000);})();
 </script>
 
 </body>
