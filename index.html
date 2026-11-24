@@ -201,7 +201,7 @@ section{padding:90px 0}
 
 
 /* HERO COUNT */
-.hero-count{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 10px;padding:8px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--border);margin-bottom:18px;box-shadow:var(--shadow)}
+.hero-count{display:flex;width:fit-content;max-width:100%;align-items:center;flex-wrap:wrap;gap:4px 10px;padding:8px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--border);margin-bottom:18px;box-shadow:var(--shadow)}
 .hero-count b{font-size:22px;font-weight:950;color:var(--blue);line-height:1}
 .hero-count span{font-size:13px;font-weight:700;color:var(--muted)}
 .hero-count em{font-style:normal;color:#ffd43b;letter-spacing:2px;font-size:12px}
@@ -258,7 +258,7 @@ body:not(.dark-mode) .review-card span{color:var(--blue)}
 .pb-timer strong{font-weight:900}
 .pb-btn{background:#fff;color:#be123c;font-weight:900;padding:5px 14px;border-radius:999px;transition:transform .2s}
 .pb-btn:hover{transform:translateY(-2px)}
-@media(min-width:1250px){.pb-desc{display:inline;opacity:.9}}
+
 
 /* SECURE CONNECTION */
 .secure{background:var(--surface2)}
@@ -386,6 +386,10 @@ footer a:hover{color:var(--cyan)}
 .floating-whatsapp{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green);color:#fff;z-index:1000;box-shadow:0 15px 35px rgba(37,211,102,.35);animation:whatsappPulse 2s infinite}
 @keyframes whatsappPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 
+/* DESKTOP FIXES: keep nav labels on one line and avoid a crowded header */
+.navlinks a{white-space:nowrap}
+@media(min-width:951px) and (max-width:1350px){.navlinks{gap:14px}.navlinks a{font-size:13px}.desktop-support{display:none}}
+
 /* EXTRAS */
 a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 .reveal{opacity:0;translate:0 24px;transition:opacity .6s,translate .6s,transform .3s,box-shadow .3s,border-color .3s}
@@ -422,10 +426,180 @@ section{padding:65px 0}
 .countdown strong{font-size:25px}
 .promo-inner{padding:40px 18px}
 .contact-info,.contact-form{padding:25px}}
+
+/* ===== PROFESSIONAL POLISH LAYER ===== */
+:root{--shadow-sm:0 1px 2px rgba(7,27,53,.06),0 4px 14px rgba(7,27,53,.05);--shadow-md:0 2px 6px rgba(7,27,53,.06),0 16px 40px rgba(7,27,53,.10);--ease:cubic-bezier(.22,.8,.3,1)}
+html{scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3{text-wrap:balance;font-weight:800;letter-spacing:-.02em}
+p{text-wrap:pretty}
+::selection{background:rgba(18,102,241,.22)}
+.container{width:min(1180px,calc(100% - 40px))}
+
+/* progress + back to top */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:2000;pointer-events:none}
+.to-top{position:fixed;left:20px;bottom:20px;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:var(--shadow-md);cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s var(--ease)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{border-color:var(--blue);color:var(--blue)}
+
+/* navbar */
+.navbar{transition:box-shadow .3s,background .3s}
+.navbar.scrolled{box-shadow:0 8px 30px rgba(7,27,53,.10)}
+.nav-inner{min-height:70px}
+.navlinks a{position:relative;padding:6px 2px;color:var(--muted);font-weight:600}
+.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--blue);transform:scaleX(0);transition:transform .3s var(--ease)}
+.navlinks a:hover,.navlinks a.active{color:var(--text)}
+.navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1)}
+.theme-btn,.menu-btn{transition:.2s;display:inline-flex;align-items:center;justify-content:center}
+.theme-btn:hover,.menu-btn:hover{border-color:var(--blue)}
+.menu-btn{display:none}
+
+/* buttons */
+.btn{min-height:46px;border-radius:12px;letter-spacing:.01em;transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-primary:hover,.btn-whatsapp:hover{box-shadow:0 14px 30px rgba(18,102,241,.28)}
+.btn-whatsapp:hover{box-shadow:0 14px 30px rgba(37,211,102,.35)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);background:rgba(18,102,241,.05)}
+
+/* hero */
+.hero{padding:96px 0 84px;background:
+  radial-gradient(900px 500px at 85% -10%,rgba(25,211,255,.18),transparent 60%),
+  radial-gradient(700px 480px at 0% 20%,rgba(18,102,241,.16),transparent 60%),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 70%)}
+.hero .container{position:relative}
+.hero h1{font-weight:900;letter-spacing:-.035em}
+.hero p{line-height:1.7}
+.hero-card{border:1px solid rgba(255,255,255,.08);box-shadow:0 40px 90px rgba(4,19,38,.35);animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-proof span{box-shadow:var(--shadow-sm)}
+
+/* trust strip */
+.trust-item{transition:background .25s}
+.trust-item:hover{background:var(--surface2)}
+
+/* cards: unified feel */
+.service-card,.price-card,.pkg-card,.document-card,.portfolio-card,.review-card,.value,.single-price,.audience-item,.process-card{box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.service-card:hover,.portfolio-card:hover,.document-card:hover,.pkg-card:hover,.price-card:not(.featured):hover,.audience-item:hover,.single-price:hover,.process-card:hover,.value:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:rgba(18,102,241,.35)}
+.section-heading h2,.about-content h2{font-weight:900}
+.section-heading::before{content:"";display:block;width:44px;height:4px;border-radius:4px;margin:0 auto 18px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.price-card.featured{box-shadow:0 30px 70px rgba(7,27,53,.30)}
+
+/* reveal stagger */
+.reveal{transition-timing-function:var(--ease)}
+.services-grid>.reveal:nth-child(3n+2),.reviews-grid>.reveal:nth-child(3n+2),.portfolio-grid>.reveal:nth-child(3n+2){transition-delay:.08s}
+.services-grid>.reveal:nth-child(3n),.reviews-grid>.reveal:nth-child(3n),.portfolio-grid>.reveal:nth-child(3n){transition-delay:.16s}
+
+/* forms */
+input,select,textarea{width:100%;border-radius:12px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue)!important;box-shadow:0 0 0 4px rgba(18,102,241,.15)}
+textarea{min-height:120px;resize:vertical}
+.faq-list details,.faq-list>*{transition:border-color .2s,box-shadow .2s}
+
+/* footer */
+footer a{transition:color .2s}
+footer a:hover{color:var(--cyan)}
+
+/* dark mode refinements */
+body.dark-mode .navlinks a{color:#aabbd0}
+body.dark-mode .navlinks a:hover,body.dark-mode .navlinks a.active{color:#fff}
+body.dark-mode .service-card,body.dark-mode .price-card,body.dark-mode .review-card,body.dark-mode .portfolio-card{box-shadow:none}
+body.dark-mode .hero::before{opacity:.18}
+
+/* responsive polish */
+img,svg,video{max-width:100%}
+table{display:block;overflow-x:auto;max-width:100%}
+@media(max-width:950px){
+  .navlinks{top:100%;max-height:calc(100vh - 80px);overflow:auto;gap:2px;padding:12px 20px 20px;box-shadow:0 24px 40px rgba(7,27,53,.14);animation:dropIn .25s var(--ease)}
+  .navlinks a{padding:14px 4px;font-size:16px;border-bottom:1px solid var(--border);color:var(--text)}
+  .navlinks a:last-child{border-bottom:none}
+  .navlinks a::after{display:none}
+  .navlinks a.active{color:var(--blue)}
+  .menu-btn{display:inline-flex}
+  .hero{padding:64px 0 56px}
+  .hero-card{animation:none}
+  .promo-bar-inner{gap:6px 10px}
+}
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){
+  .container{width:calc(100% - 32px)}
+  .hero h1{font-size:clamp(36px,11vw,48px)}
+  .hero p{font-size:16px}
+  .hero-buttons .btn{width:100%}
+  .hero-proof span{font-size:12px;padding:7px 11px}
+  .section-heading{margin-bottom:32px}
+  .to-top{bottom:20px;left:14px;width:42px;height:42px}
+  .floating-whatsapp{right:14px;bottom:20px;width:54px;height:54px}
+  .promo-bar{font-size:12px}
+  .pb-timer,.pb-btn{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.hero-card,.navlinks{animation:none!important}.scroll-progress{display:none}}
+
+/* ===== ICONS + ACTIVE MENU ===== */
+.ic{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex-shrink:0;margin-right:.4em}
+.theme-btn .ic,.menu-btn .ic{width:20px;height:20px;margin:0;vertical-align:middle}
+.trust-item strong .ic,.contact-detail strong .ic,.pkg-top h3 .ic,.portfolio-category h3 .ic{color:var(--blue)}
+.trust-item strong .ic{width:1.2em;height:1.2em}
+.audience-item{display:flex;flex-direction:column;align-items:center;gap:10px}
+.audience-item .ic{width:28px;height:28px;margin:0;color:var(--blue);padding:0}
+.chip{display:inline-flex;align-items:center}
+.chip .ic{color:var(--blue)}
+.hero-proof span{display:inline-flex;align-items:center}
+.hero-proof .ic{color:var(--blue)}
+.pb-badge,.promo-badge,.student-strip,.btn-secure,.pb-timer{display:inline-flex;align-items:center;justify-content:center}
+.pb-badge .ic,.pb-timer .ic,.btn .ic{margin-right:.45em}
+.student-strip .ic{width:1.3em;height:1.3em}
+.footer-grid li .ic{color:var(--cyan)}
+/* active menu item: clear pill in the header */
+.navlinks a{padding:8px 12px;border-radius:10px;transition:background .2s,color .2s}
+.navlinks a::after{display:none}
+.navlinks a:hover{background:rgba(18,102,241,.07);color:var(--text)}
+.navlinks a.active{background:rgba(18,102,241,.12);color:var(--blue);font-weight:800;box-shadow:inset 0 0 0 1px rgba(18,102,241,.22)}
+body.dark-mode .navlinks a.active{background:rgba(25,211,255,.14);color:var(--cyan);box-shadow:inset 0 0 0 1px rgba(25,211,255,.3)}
+@media(min-width:951px) and (max-width:1350px){.navlinks{gap:4px}.navlinks a{padding:8px 9px}}
+@media(max-width:950px){.navlinks a{padding:14px 12px;border-radius:12px;border-bottom:none}.navlinks a.active{box-shadow:none}}
+
+/* ===== FLOATING OFFER CARD ===== */
+.promo-bar{position:fixed;top:88px;right:20px;z-index:1500;width:min(320px,calc(100vw - 24px));padding:0;background:none;font-size:14px;color:#fff}
+.promo-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 20px 20px;border-radius:20px;background:linear-gradient(160deg,#0d2d52,#061528);border:1px solid rgba(255,255,255,.10);box-shadow:0 24px 60px rgba(4,19,38,.45);overflow:hidden;animation:promoIn .6s var(--ease) .8s both}
+.promo-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#ff7a00,#e11d48)}
+.promo-card .pb-badge{background:rgba(255,122,0,.18);color:#ffb15c;font-size:10.5px;padding:5px 10px}
+.promo-card .pb-title{font-size:17px;line-height:1.25;padding-right:26px}
+.promo-card .pb-price{font-size:34px;line-height:1;font-weight:950;color:var(--yellow)}
+.promo-card .pb-spots{background:rgba(255,255,255,.08);color:#d8e5f2;letter-spacing:.3px;font-weight:700;font-size:12px}
+.promo-card .pb-timer{background:rgba(255,255,255,.07);border-radius:10px;padding:7px 12px;font-size:13px;color:#e7f0fa}
+.promo-card .pb-btn{width:100%;text-align:center;margin-top:4px;padding:11px 16px;font-size:14px;border-radius:12px;background:linear-gradient(135deg,#ff7a00,#e11d48);color:#fff;box-shadow:0 10px 24px rgba(225,29,72,.3)}
+.promo-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:8px;border:none;background:rgba(255,255,255,.08);color:#d8e5f2;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.promo-close:hover{background:rgba(255,255,255,.18)}
+.promo-close .ic{width:14px;height:14px;margin:0}
+.promo-pill{display:none;align-items:center;margin-left:auto;padding:10px 16px;border:none;border-radius:999px;cursor:pointer;font-weight:800;font-size:13px;color:#fff;background:linear-gradient(135deg,#ff7a00,#e11d48);box-shadow:0 14px 30px rgba(225,29,72,.35)}
+.promo-pill .ic{margin-right:6px}
+.promo-bar.collapsed .promo-card{display:none}
+.promo-bar.collapsed .promo-pill{display:flex;animation:promoIn .35s var(--ease) both}
+@keyframes promoIn{from{opacity:0;transform:translateY(-12px) scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:600px){.promo-bar{top:78px;right:12px;left:12px;width:auto}}
+@media(prefers-reduced-motion:reduce){.promo-card,.promo-bar.collapsed .promo-pill{animation:none}}
+
+/* minimised offer: live counter visible without clicking */
+.promo-pill{flex-direction:column;align-items:stretch;gap:4px;padding:10px 16px 10px 14px;border-radius:18px;text-align:left;position:relative;animation:pillGlow 2.4s ease-in-out infinite}
+.promo-bar.collapsed .promo-pill{animation:promoIn .35s var(--ease) both,pillGlow 2.4s ease-in-out .4s infinite}
+.pp-top,.pp-time{display:flex;align-items:center;white-space:nowrap}
+.pp-top b{font-size:17px;font-weight:950;color:#fff7c2;letter-spacing:-.2px}
+.pp-top em{font-style:normal;margin-left:auto;padding-left:10px;font-size:11px;font-weight:800;background:rgba(0,0,0,.28);padding:3px 8px;border-radius:999px}
+.pp-top em:empty{display:none}
+.pp-top .ic,.pp-time .ic{margin-right:6px}
+.pp-time{font-size:12px;font-weight:700;opacity:.95}
+.pp-time strong{margin-left:5px;font-size:15px;font-weight:900;font-variant-numeric:tabular-nums;background:rgba(0,0,0,.28);padding:2px 8px;border-radius:7px}
+@keyframes pillGlow{0%,100%{box-shadow:0 14px 30px rgba(225,29,72,.35),0 0 0 0 rgba(255,122,0,.55)}60%{box-shadow:0 14px 30px rgba(225,29,72,.35),0 0 0 12px rgba(255,122,0,0)}}
+@media(max-width:600px){.promo-pill{padding:8px 13px}.pp-top b{font-size:15px}.pp-time strong{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.promo-pill,.promo-bar.collapsed .promo-pill{animation:none}}
 </style>
 </head>
 
 <body class="dark-mode">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ic-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="ic-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol><symbol id="ic-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol><symbol id="ic-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="ic-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol><symbol id="ic-msg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol><symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="ic-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1-2-.1-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.4 1-3 0 1.4 1 2.5 2.5 2.5z"/></symbol><symbol id="ic-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol><symbol id="ic-grad" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v6"/></symbol><symbol id="ic-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></symbol><symbol id="ic-bug" viewBox="0 0 24 24"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 20v-9M6 13H2M22 13h-4M6 17l-3 2M18 17l3 2M9 6 7 3M15 6l2-3"/></symbol><symbol id="ic-alert" viewBox="0 0 24 24"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3z"/><path d="M12 9v4M12 17h.01"/></symbol><symbol id="ic-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol><symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="ic-brief" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol><symbol id="ic-idcard" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M5.5 16c.6-1.7 2-2.5 3.5-2.5s2.9.8 3.5 2.5M15 10h4M15 14h4"/></symbol><symbol id="ic-build" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol><symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="m12 15-3-3a22 22 0 0 1 2-4 12.9 12.9 0 0 1 11-6c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></symbol><symbol id="ic-landmark" viewBox="0 0 24 24"><path d="M3 22h18M6 18v-7M10 18v-7M14 18v-7M18 18v-7M12 2 3 7h18z"/></symbol><symbol id="ic-book" viewBox="0 0 24 24"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></symbol><symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol><symbol id="ic-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol><symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="ic-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol><symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol><symbol id="ic-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></symbol><symbol id="ic-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2a10 10 0 1 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3a4 4 0 0 0 4-4C21 6 17 2 12 2z"/></symbol><symbol id="ic-printer" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol></svg>
+
 
 <!-- ICON SPRITE -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -440,25 +614,23 @@ section{padding:65px 0}
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
 </svg>
 
-<!-- PROMO BAR (top of page) -->
-<div class="promo-bar">
-  <div class="container promo-bar-inner">
-    <span class="pb-badge">🔥 FIRST 5 NEW CLIENTS DAILY</span>
-    <span><strong class="pb-title" id="promoTitle">Special SmartFix Offer</strong> <span class="pb-desc" id="promoDescription"></span></span>
+<!-- OFFER (floating card) -->
+<aside class="promo-bar" id="promoFloat" aria-label="Special offer">
+  <div class="promo-card" id="promoCard">
+    <button class="promo-close" id="promoClose" type="button" aria-label="Minimise offer"><svg class="ic" aria-hidden="true"><use href="#ic-x"/></svg></button>
+    <span class="pb-badge"><svg class="ic" aria-hidden="true"><use href="#ic-flame"/></svg> FIRST 5 NEW CLIENTS DAILY</span>
+    <strong class="pb-title" id="promoTitle">Special SmartFix Offer</strong>
+    <span class="pb-desc" id="promoDescription"></span>
     <span class="pb-price" id="promoPrice">20% OFF</span>
-    <span class="pb-timer" id="promoTimerBar" title="Time left in today's 5-hour offer window">⏳ <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
+    <span class="pb-badge pb-spots" id="promoSpots">5 of 5 spots left today</span>
+    <span class="pb-timer" id="promoTimerBar" title="Live countdown to the daily offer window"><svg class="ic" aria-hidden="true"><use href="#ic-clock"/></svg> <span id="promoCountLabel">Ends in</span> <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
     <a id="promoButton" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="pb-btn">Claim Offer ↗</a>
   </div>
-</div>
-
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container topbar-inner">
-    <div class="topbar-item">📍 Kaguvi Shopping Center, Chegutu, Zimbabwe</div>
-    <div class="topbar-item"><a href="tel:+263773092198">📞 +263 773 092 198</a></div>
-    <div class="topbar-item"><a href="mailto:smartfixremoteinfo@gmail.com">✉️ smartfixremoteinfo@gmail.com</a></div>
-  </div>
-</div>
+  <button class="promo-pill" id="promoPill" type="button" aria-label="Show special offer details">
+    <span class="pp-top"><svg class="ic" aria-hidden="true"><use href="#ic-flame"/></svg><b id="ppPrice">20% OFF</b><em id="ppSpots"></em></span>
+    <span class="pp-time"><svg class="ic" aria-hidden="true"><use href="#ic-clock"/></svg><span id="ppLabel">Ends in</span> <strong id="ppClock">00:00:00</strong></span>
+  </button>
+</aside>
 
 <!-- NAVIGATION -->
 <nav class="navbar">
@@ -487,14 +659,14 @@ section{padding:65px 0}
       <a href="#customers">Feedback</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <a href="#secure" class="nav-secure">🔒 How We Connect</a>
+      <a href="#secure" class="nav-secure"><svg class="ic" aria-hidden="true"><use href="#ic-lock"/></svg> How We Connect</a>
     </div>
 
     <div class="nav-actions">
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">☀️</button>
-      <a class="btn btn-secure how-btn" href="#secure">🔒 How We Connect</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"><svg class="ic" aria-hidden="true"><use href="#ic-sun"/></svg></button>
+      <a class="btn btn-secure how-btn" href="#secure"><svg class="ic" aria-hidden="true"><use href="#ic-lock"/></svg> How We Connect</a>
       <a class="btn btn-whatsapp desktop-support" href="https://wa.me/263773092198" target="_blank" rel="noopener">Get Support ↗</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><svg class="ic" aria-hidden="true"><use href="#ic-menu"/></svg></button>
     </div>
 
   </div>
@@ -513,14 +685,14 @@ section{padding:65px 0}
       <div class="hero-buttons">
         <a href="https://wa.me/263773092198" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp Us ↗</a>
         <a href="#portfolio" class="btn btn-outline">View Our Work</a>
-        <a href="#secure" class="btn btn-secure">🔒 How We Connect</a>
+        <a href="#secure" class="btn btn-secure"><svg class="ic" aria-hidden="true"><use href="#ic-lock"/></svg> How We Connect</a>
       </div>
-      <div class="secure-note">🔒 You approve every session and watch everything live.</div>
+      <div class="secure-note"><svg class="ic" aria-hidden="true"><use href="#ic-lock"/></svg> You approve every session and watch everything live.</div>
       <div class="hero-proof">
-        <span>⚡ Fast response</span>
-        <span>🌐 100% remote</span>
-        <span>💬 WhatsApp support</span>
-        <span>📄 CVs in 24 hours</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#ic-zap"/></svg> Fast response</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg> 100% remote</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#ic-msg"/></svg> WhatsApp support</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#ic-file"/></svg> CVs in 24 hours</span>
       </div>
     </div>
 
@@ -544,10 +716,10 @@ section{padding:65px 0}
 <!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="container trust-grid">
-    <div class="trust-item"><strong>⚡ Fast Support</strong><span>Quick assistance</span></div>
-    <div class="trust-item"><strong>🌐 Remote Service</strong><span>No travelling required</span></div>
-    <div class="trust-item"><strong>📄 24-Hour CVs</strong><span>Confidential &amp; professional</span></div>
-    <div class="trust-item"><strong>💬 WhatsApp</strong><span>Easy communication</span></div>
+    <div class="trust-item"><strong><svg class="ic" aria-hidden="true"><use href="#ic-zap"/></svg> Fast Support</strong><span>Quick assistance</span></div>
+    <div class="trust-item"><strong><svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg> Remote Service</strong><span>No travelling required</span></div>
+    <div class="trust-item"><strong><svg class="ic" aria-hidden="true"><use href="#ic-file"/></svg> 24-Hour CVs</strong><span>Confidential &amp; professional</span></div>
+    <div class="trust-item"><strong><svg class="ic" aria-hidden="true"><use href="#ic-msg"/></svg> WhatsApp</strong><span>Easy communication</span></div>
   </div>
 </div>
 
@@ -559,15 +731,15 @@ section{padding:65px 0}
       <h2>Tap Your Problem. We Take It From Here.</h2>
     </div>
     <div class="chips">
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20computer%20is%20running%20slow." target="_blank" rel="noopener">🐌 Slow computer</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20think%20my%20computer%20has%20a%20virus." target="_blank" rel="noopener">🦠 Virus or pop-ups</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20Windows%20will%20not%20start." target="_blank" rel="noopener">⚠️ Windows won't start</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20printer%20is%20not%20working." target="_blank" rel="noopener">🖨️ Printer not working</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20software%20installed." target="_blank" rel="noopener">⚙️ Install software</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20have%20a%20Word%20or%20Excel%20problem." target="_blank" rel="noopener">📝 Word / Excel problem</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20CV.%20READY" target="_blank" rel="noopener">📄 CV from $5</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20logo%20or%20flyer." target="_blank" rel="noopener">🎨 Logo or flyer</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20website." target="_blank" rel="noopener">🌐 I need a website</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20computer%20is%20running%20slow." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-gauge"/></svg> Slow computer</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20think%20my%20computer%20has%20a%20virus." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-bug"/></svg> Virus or pop-ups</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20Windows%20will%20not%20start." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-alert"/></svg> Windows won't start</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20printer%20is%20not%20working." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-printer"/></svg> Printer not working</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20software%20installed." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-cog"/></svg> Install software</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20have%20a%20Word%20or%20Excel%20problem." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-edit"/></svg> Word / Excel problem</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20CV.%20READY" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-file"/></svg> CV from $5</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20logo%20or%20flyer." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-palette"/></svg> Logo or flyer</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20website." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg> I need a website</a>
     </div>
     <p class="quickhelp-note">Opens WhatsApp with your message ready to send.</p>
   </div>
@@ -626,14 +798,14 @@ section{padding:65px 0}
       <h2>Solutions For Everyone</h2>
     </div>
     <div class="audience-grid">
-      <div class="audience-item">👤 Individuals</div>
-      <div class="audience-item">🎓 Students</div>
-      <div class="audience-item">💼 Job Seekers</div>
-      <div class="audience-item">👔 Professionals</div>
-      <div class="audience-item">🏢 Small Businesses</div>
-      <div class="audience-item">🚀 Startups</div>
-      <div class="audience-item">⛪ Churches & Organisations</div>
-      <div class="audience-item">🏫 Schools</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-user"/></svg> Individuals</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-grad"/></svg> Students</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-brief"/></svg> Job Seekers</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-idcard"/></svg> Professionals</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-build"/></svg> Small Businesses</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-rocket"/></svg> Startups</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-landmark"/></svg> Churches & Organisations</div>
+      <div class="audience-item"><svg class="ic" aria-hidden="true"><use href="#ic-book"/></svg> Schools</div>
     </div>
   </div>
 </section>
@@ -751,7 +923,7 @@ section{padding:65px 0}
 
       <div class="pkg-card wide">
         <div>
-          <div class="pkg-top"><h3>🌍 Executive / Diaspora Package</h3><div class="pkg-price yellow">$15 &ndash; $20</div></div>
+          <div class="pkg-top"><h3><svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg> Executive / Diaspora Package</h3><div class="pkg-price yellow">$15 &ndash; $20</div></div>
           <ul class="pkg-list">
             <li>International-standard CV (UK / SA / Canada format)</li>
             <li>Cover letter + LinkedIn profile optimisation</li>
@@ -763,7 +935,7 @@ section{padding:65px 0}
 
       <div class="pkg-card wide soft">
         <div>
-          <div class="pkg-top"><h3>📝 Typing, Formatting &amp; Editing</h3><div class="pkg-price sm">From $1 / page</div></div>
+          <div class="pkg-top"><h3><svg class="ic" aria-hidden="true"><use href="#ic-edit"/></svg> Typing, Formatting &amp; Editing</h3><div class="pkg-price sm">From $1 / page</div></div>
           <ul class="pkg-list">
             <li>Academic assignments &amp; business proposals</li>
             <li>Company profiles &amp; dissertation formatting</li>
@@ -779,7 +951,7 @@ section{padding:65px 0}
       <h3>DM me <em>&ldquo;READY&rdquo;</em> &mdash; Send your old CV now!</h3>
       <div class="ready-points"><span>✓ We deliver within 24 hours</span><span>• Quick turnaround</span><span>• Confidential &amp; professional</span></div>
       <a href="https://wa.me/263773092198?text=READY" target="_blank" rel="noopener" class="btn btn-whatsapp">Send &ldquo;READY&rdquo; on WhatsApp ↗</a>
-      <div class="student-strip">🎓 STUDENTS: Special discount available &mdash; ask about our local student discount!</div>
+      <div class="student-strip"><svg class="ic" aria-hidden="true"><use href="#ic-grad"/></svg> STUDENTS: Special discount available &mdash; ask about our local student discount!</div>
     </div>
   </div>
 </section>
@@ -794,7 +966,7 @@ section{padding:65px 0}
     </div>
 
     <div class="portfolio-category cat-cv">
-      <h3>📄 CV Templates</h3>
+      <h3><svg class="ic" aria-hidden="true"><use href="#ic-file"/></svg> CV Templates</h3>
       <div class="portfolio-grid">
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp"><div style="width:32%;background:#0b315c;padding:9px 5px"><b class="av"></b><i class="lt w80"></i><i class="lt w60"></i><i class="lt w80"></i><i class="lt w50"></i></div><div style="flex:1;padding:9px 7px"><i class="h w70"></i><i class="w100"></i><i class="w80"></i><i class="w100"></i><i class="h w50" style="margin-top:9px"></i><i class="w100"></i><i class="w60"></i><i class="h w50" style="margin-top:9px"></i><i class="w80"></i></div></div></div><strong>Professional CV</strong><span>Clean professional layout</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20Professional%20CV." target="_blank" rel="noopener">Request CV ↗</a></div>
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="display:block;padding:10px 9px"><b class="tg">ATS</b><i class="k w60" style="height:7px"></i><i class="w50"></i><i class="k w100" style="height:1px;margin:7px 0 5px"></i><i class="k w40"></i><i class="w100"></i><i class="w100"></i><i class="w80"></i><i class="k w100" style="height:1px;margin:7px 0 5px"></i><i class="k w40"></i><i class="w100"></i><i class="w70"></i><i class="k w100" style="height:1px;margin:7px 0 5px"></i><i class="k w40"></i><i class="w100"></i></div></div><strong>ATS-Friendly CV</strong><span>Designed for applicant tracking systems</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20ATS-friendly%20CV." target="_blank" rel="noopener">Request CV ↗</a></div>
@@ -806,7 +978,7 @@ section{padding:65px 0}
     </div>
 
     <div class="portfolio-category cat-gfx">
-      <h3>🎨 Graphics Design Samples</h3>
+      <h3><svg class="ic" aria-hidden="true"><use href="#ic-palette"/></svg> Graphics Design Samples</h3>
       <div class="portfolio-grid">
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column"><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:9px 8px;color:#fff"><div class="tx" style="font-size:6px;opacity:.85">GRAND OPENING</div><div class="tx" style="font-size:16px;margin-top:3px">50%<br>OFF</div></div><div style="flex:1;padding:7px 8px;position:relative"><i class="w100"></i><i class="w80"></i><i class="w60"></i><b style="position:absolute;right:7px;top:-13px;width:26px;height:26px;border-radius:50%;background:#ffbd2e;display:block"></b></div><div style="background:#ff7a00;color:#fff;font-size:6px;font-weight:900;text-align:center;padding:6px">CALL NOW</div></div></div><strong>Business Flyer</strong><span>Professional promotional flyer</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20flyer." target="_blank" rel="noopener">Start Design ↗</a></div>
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column;background:linear-gradient(160deg,#4c1d95,#be185d);color:#fff;padding:9px 8px;justify-content:space-between"><div class="tx" style="font-size:6px;letter-spacing:1.5px;opacity:.9">LIVE IN CONCERT</div><div class="tx" style="font-size:21px">NIGHT<br>FEST</div><div><div style="background:#ffbd2e;color:#4c1d95;font-weight:900;font-size:7px;padding:4px 6px;border-radius:3px;display:inline-block">FRI 8PM</div><i class="lt w60" style="margin-top:6px"></i></div></div></div><strong>Event Poster</strong><span>Attention-catching event graphics</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20event%20poster." target="_blank" rel="noopener">Start Design ↗</a></div>
@@ -818,7 +990,7 @@ section{padding:65px 0}
     </div>
 
     <div class="portfolio-category cat-web">
-      <h3>🌐 Website Templates & Samples</h3>
+      <h3><svg class="ic" aria-hidden="true"><use href="#ic-globe"/></svg> Website Templates & Samples</h3>
       <div class="portfolio-grid">
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:10px 9px;color:#fff"><div class="tx" style="font-size:9px">Grow Your<br>Business</div><div style="background:#fff;color:#1266f1;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">GET STARTED</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b></div></div></div><strong>Business Website</strong><span>Modern business website</span><em class="pf-price">From $150</em><small class="pf-incl"><b>Package includes:</b> Up to 5 pages, responsive design, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
         <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:#0b2545;color:#fff;display:flex;gap:6px;align-items:center;padding:9px"><div style="flex:1"><div class="tx" style="font-size:8px">Global<br>Solutions</div><div style="background:#19d3ff;color:#0b2545;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">CONTACT</div></div><b class="sq" style="width:44px;height:44px;background:linear-gradient(135deg,#1266f1,#19d3ff)"></b></div><div style="display:flex;justify-content:space-around;padding:8px 4px;text-align:center"><div class="tx" style="font-size:9px;color:#1266f1">25+<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">120<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">10K<i class="w100" style="margin:3px 0 0"></i></div></div></div></div><strong>Company / Corporate Website</strong><span>Professional company website</span><em class="pf-price">From $150</em><small class="pf-incl"><b>Package includes:</b> Up to 5 pages, responsive design, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20corporate%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
@@ -908,15 +1080,17 @@ section{padding:65px 0}
 <section class="smartfix-promo">
   <div class="container">
     <div class="promo-inner">
-      <div class="promo-badge">🔥 FIRST 5 NEW CLIENTS DAILY</div>
+      <div class="promo-badge"><svg class="ic" aria-hidden="true"><use href="#ic-flame"/></svg> FIRST 5 NEW CLIENTS DAILY</div>
       <h2 id="promoTitleB">Special SmartFix Offer</h2>
       <p id="promoDescriptionB">Get professional digital support at a special promotional rate.</p>
+      <p id="promoCountLabelB" style="font-weight:800;letter-spacing:1px;color:#9db0c5;font-size:12px;text-transform:uppercase;margin:0 auto 8px">Ends in</p>
       <div class="countdown" id="promoTimerSec">
         <div><strong id="promoHoursB">00</strong><span>HRS</span></div>
         <div><strong id="promoMinutesB">00</strong><span>MIN</span></div>
         <div><strong id="promoSecondsB">00</strong><span>SEC</span></div>
       </div>
       <div class="promo-price"><span id="promoPriceB">20% OFF</span></div>
+      <p id="promoSpotsB" style="font-weight:800;color:#ffd43b;margin:0 auto 20px">5 of 5 spots left today</p>
       <a id="promoButtonB" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="promo-btn">Claim Offer ↗</a>
       <small id="promoNote">For the first 5 new clients each day, open 5 hours a day (8:00 AM&ndash;1:00 PM Zimbabwe time) until 31 December. Excludes monthly plans and emergency support.</small>
     </div>
@@ -1017,7 +1191,7 @@ section{padding:65px 0}
     </div>
     <div class="cta-actions">
       <a href="https://wa.me/263773092198" target="_blank" rel="noopener" class="btn btn-whatsapp">Chat on WhatsApp ↗</a>
-      <a href="#secure" class="btn btn-outline">🔒 How We Connect</a>
+      <a href="#secure" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#ic-lock"/></svg> How We Connect</a>
     </div>
   </div>
 </section>
@@ -1034,10 +1208,10 @@ section{padding:65px 0}
     <div class="contact-grid">
       <div class="contact-info">
         <h3>SmartFix Remote</h3>
-        <div class="contact-detail"><strong>📞 WhatsApp / Phone</strong><span>+263 773 092 198</span></div>
-        <div class="contact-detail"><strong>✉️ Email</strong><span>smartfixremoteinfo@gmail.com</span></div>
-        <div class="contact-detail"><strong>📍 Location</strong><span>Kaguvi Shopping Center, Chegutu, Zimbabwe</span></div>
-        <div class="contact-detail"><strong>🕒 Working Hours</strong><span>Monday – Friday, 8:00 AM – 5:00 PM</span></div>
+        <div class="contact-detail"><strong><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> WhatsApp / Phone</strong><span>+263 773 092 198</span></div>
+        <div class="contact-detail"><strong><svg class="ic" aria-hidden="true"><use href="#ic-mail"/></svg> Email</strong><span>smartfixremoteinfo@gmail.com</span></div>
+        <div class="contact-detail"><strong><svg class="ic" aria-hidden="true"><use href="#ic-pin"/></svg> Location</strong><span>Kaguvi Shopping Center, Chegutu, Zimbabwe</span></div>
+        <div class="contact-detail"><strong><svg class="ic" aria-hidden="true"><use href="#ic-clock"/></svg> Working Hours</strong><span>Monday – Friday, 8:00 AM – 5:00 PM</span></div>
         <br>
         <a href="https://wa.me/263773092198" target="_blank" rel="noopener" class="btn btn-whatsapp">Chat With SmartFix ↗</a>
       </div>
@@ -1110,10 +1284,10 @@ section{padding:65px 0}
     <div>
       <h3>Contact</h3>
       <ul>
-        <li><a href="tel:+263773092198">📞 +263 773 092 198</a></li>
-        <li><a href="mailto:smartfixremoteinfo@gmail.com">✉️ smartfixremoteinfo@gmail.com</a></li>
-        <li>📍 Kaguvi Shopping Center, Chegutu</li>
-        <li>🕒 Mon–Fri, 8:00 AM – 5:00 PM</li>
+        <li><a href="tel:+263773092198"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg> +263 773 092 198</a></li>
+        <li><a href="mailto:smartfixremoteinfo@gmail.com"><svg class="ic" aria-hidden="true"><use href="#ic-mail"/></svg> smartfixremoteinfo@gmail.com</a></li>
+        <li><svg class="ic" aria-hidden="true"><use href="#ic-pin"/></svg> Kaguvi Shopping Center, Chegutu</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#ic-clock"/></svg> Mon–Fri, 8:00 AM – 5:00 PM</li>
       </ul>
     </div>
   </div>
@@ -1146,13 +1320,13 @@ let savedTheme = null;
 try { savedTheme = localStorage.getItem("smartfix-theme"); } catch(e) {}
 if (savedTheme === "light") {
   document.body.classList.remove("dark-mode");
-  themeToggle.textContent = "🌙";
+  themeToggle.innerHTML = "<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-moon\"/></svg>";
 }
 themeToggle.addEventListener("click", function(){
   document.body.classList.toggle("dark-mode");
   const dark = document.body.classList.contains("dark-mode");
   try { localStorage.setItem("smartfix-theme", dark ? "dark" : "light"); } catch(e) {}
-  themeToggle.textContent = dark ? "☀️" : "🌙";
+  themeToggle.innerHTML = dark ? "<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-sun\"/></svg>" : "<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-moon\"/></svg>";
 });
 
 /* WHATSAPP FORM */
@@ -1232,8 +1406,21 @@ function chooseRandomPromotion(){
 }
 
 /* 20% OFF FOR THE FIRST 5 NEW CLIENTS EACH DAY
-   Every day, 8:00 AM to 1:00 PM Zimbabwe time (UTC+2) - a 5-hour countdown that restarts each morning.
-   The campaign ends on 31 December 2026; after that the promotion is hidden. */
+   - Offer window: every day 8:00 AM to 1:00 PM Zimbabwe time (UTC+2).
+   - The countdown is always running: during the window it counts down to 1:00 PM (offer ends);
+     outside the window it counts down to the next 8:00 AM (offer opens).
+   - The campaign ends on 31 December 2026; after that the promotion is hidden.
+   - Spots, option A (automatic): paste your Google Apps Script web app URL into SPOTS_API below (setup steps are in
+     spots-counter.gs). Every visitor then sees the same shared count, and each Claim Offer tap reserves one spot
+     (one per browser per day). A new day starts at 0 automatically.
+   - Spots, option B (manual): leave SPOTS_API empty and edit SPOTS_STATE yourself after you confirm each client:
+     raise "taken" and set "date" to today (YYYY-MM-DD). */
+const DAILY_SPOTS = 5;
+const SPOTS_API = "https://script.google.com/macros/s/AKfycbwdvFfuvuy2obVQjXc9Tat10Y2yDmuronXv7fjcswSBkBL0jcQRBIfm-5F-wukYY80p/exec";
+const SPOTS_STATE = { date: "2026-11-24", taken: 0 };
+let remoteTaken = null;
+let apiOk = false; /* becomes true only after the shared counter has answered correctly */
+let promoOpen = false;
 const HARARE_OFFSET_MS = 2 * 60 * 60 * 1000;
 const HOUR = 3600 * 1000;
 const DAY = 24 * HOUR;
@@ -1246,13 +1433,6 @@ function offerWindow(shifted){
   let day = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
   if (shifted >= day + WINDOW_END_H * HOUR) day += DAY;
   return { opens: day + WINDOW_START_H * HOUR, closes: day + WINDOW_END_H * HOUR };
-}
-
-function toggleTimers(show){
-  ["promoTimerBar","promoTimerSec"].forEach(function(id){
-    const el = document.getElementById(id);
-    if (el) el.style.display = show ? "" : "none";
-  });
 }
 
 function updatePromotionTimer(){
@@ -1268,29 +1448,176 @@ function updatePromotionTimer(){
   if (ended) return;
 
   const live = shifted >= w.opens && shifted < w.closes;
+  const todayKey = new Date(shifted).toISOString().slice(0,10);
+  const taken = (SPOTS_API && apiOk && remoteTaken !== null) ? remoteTaken : (SPOTS_STATE.date === todayKey ? SPOTS_STATE.taken : 0);
+  const left = Math.max(0, DAILY_SPOTS - taken);
+  const full = live && left === 0;
+  const open = live && !full;
+  promoOpen = open;
   const note = document.getElementById("promoNote");
-  const liveHref = "https://wa.me/263773092198?text=" +
+
+  const openHref = "https://wa.me/263773092198?text=" +
     encodeURIComponent("Hello SmartFix, I want the 20% discount for the first 5 new clients today. The service I need is: ");
-  const offHref = "https://wa.me/263773092198?text=" +
+  const askHref = "https://wa.me/263773092198?text=" +
     encodeURIComponent("Hello SmartFix, please tell me when the next 20% discount window opens.");
 
   ["promoButton","promoButtonB"].forEach(function(id){
     const el = document.getElementById(id);
-    if (el) { el.href = live ? liveHref : offHref; el.textContent = live ? "Claim Offer \u2197" : "Ask About It \u2197"; }
+    if (el) { el.href = open ? openHref : askHref; el.textContent = open ? "Claim Offer \u2197" : "Ask About It \u2197"; }
   });
-  toggleTimers(live);
 
-  if (!live) {
+  if (open) {
+    setText("promoTitle", currentPromo.title);
+    setText("promoPrice", currentPromo.price);
+    setText("promoDescription", currentPromo.description);
+    setText("promoSpots", left + " of " + DAILY_SPOTS + " spots left today");
+    setText("promoCountLabel", "Ends in");
+    if (note) note.textContent = "20% off for the first 5 new clients today (excludes monthly plans and emergency support). Today's window closes at 1:00 PM, Zimbabwe time. Offer ends 31 December.";
+  } else if (full) {
+    setText("promoTitle", "All 5 spots taken today. The next 20% OFF window opens tomorrow at 8:00 AM");
+    setText("promoPrice", "FULLY BOOKED");
+    setText("promoDescription", "5 new clients per day, 8:00 AM\u20131:00 PM Zimbabwe time, until 31 December.");
+    setText("promoSpots", "All 5 spots taken today");
+    setText("promoCountLabel", "Ends in");
+    if (note) note.textContent = "You can still order today at standard prices. The 20% offer is for the first 5 new clients each day until 31 December.";
+  } else {
     const sameDay = new Date(w.opens).getUTCDate() === new Date(shifted).getUTCDate();
-    const when = sameDay ? "today" : "tomorrow";
-    setText("promoTitle", "Next 20% OFF window opens " + when + " at 8:00 AM");
+    setText("promoTitle", "Next 20% OFF window opens " + (sameDay ? "today" : "tomorrow") + " at 8:00 AM");
     setText("promoPrice", "COMING SOON");
     setText("promoDescription", "5 hours a day (8:00 AM\u20131:00 PM Zimbabwe time), for the first 5 new clients, until 31 December.");
+    setText("promoSpots", DAILY_SPOTS + " spots available each day");
+    setText("promoCountLabel", "Opens in");
     if (note) note.textContent = "The 20% offer is for the first 5 new clients each day, open 8:00 AM\u20131:00 PM until 31 December. Excludes monthly plans and emergency support.";
-    return;
   }
 
-  setText("promoTitle", currentPromo.title);
-  setText("promoPrice", currentPromo.price);
-  setText("promoDescription", currentPromo.description);
-  if (note) note.textContent = "20% off for the first 5 new clients today (excludes monthly plans and emergency supp
+  /* the countdown never stops: to the end of the window while it is open, otherwise to the next opening */
+  const target = live ? w.closes : w.opens;
+  const rem = Math.max(0, Math.floor((target - shifted) / 1000));
+  setText("promoHours", String(Math.floor(rem / 3600)).padStart(2,"0"));
+  setText("promoMinutes", String(Math.floor((rem % 3600) / 60)).padStart(2,"0"));
+  setText("promoSeconds", String(rem % 60).padStart(2,"0"));
+}
+
+function claimKey(){ return "smartfix-claim-" + new Date(Date.now() + HARARE_OFFSET_MS).toISOString().slice(0,10); }
+
+function refreshSpots(){
+  if (!SPOTS_API) return;
+  fetch(SPOTS_API + "?action=get").then(function(r){ return r.json(); }).then(function(d){
+    if (d && typeof d.taken === "number") { apiOk = true; remoteTaken = d.taken; updatePromotionTimer(); }
+  }).catch(function(){});
+}
+
+/* each Claim Offer tap reserves one spot (once per browser per day) */
+["promoButton","promoButtonB"].forEach(function(id){
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener("click", function(){
+    if (!SPOTS_API || !apiOk || !promoOpen) return;
+    let already = false;
+    try { already = !!localStorage.getItem(claimKey()); } catch(e) {}
+    if (already) return;
+    try { localStorage.setItem(claimKey(), "1"); } catch(e) {}
+    const before = remoteTaken;
+    remoteTaken = Math.min(DAILY_SPOTS, (remoteTaken === null ? 0 : remoteTaken) + 1);
+    updatePromotionTimer();
+    /* if the shared counter cannot be reached, undo the local change so the page never shows an invented number */
+    function undo(){ remoteTaken = before; try { localStorage.removeItem(claimKey()); } catch(e) {} updatePromotionTimer(); }
+    fetch(SPOTS_API + "?action=claim").then(function(r){ return r.json(); }).then(function(d){
+      if (d && typeof d.taken === "number") { remoteTaken = d.taken; updatePromotionTimer(); } else { undo(); }
+    }).catch(undo);
+  });
+});
+
+chooseRandomPromotion();
+refreshSpots();
+setInterval(refreshSpots, 30000);
+updatePromotionTimer();
+setInterval(updatePromotionTimer, 1000);
+
+/* OPEN / CLOSED STATUS (Zimbabwe time) */
+function updateStatus(){
+  const chip = document.getElementById("statusChip");
+  const txt = document.getElementById("statusText");
+  if (!chip || !txt) return;
+  try {
+    const parts = new Intl.DateTimeFormat("en-GB", {timeZone:"Africa/Harare", weekday:"short", hour:"numeric", hour12:false}).formatToParts(new Date());
+    const wd = parts.find(function(x){ return x.type === "weekday"; }).value;
+    const h = parseInt(parts.find(function(x){ return x.type === "hour"; }).value, 10) % 24;
+    const open = ["Mon","Tue","Wed","Thu","Fri"].indexOf(wd) > -1 && h >= 8 && h < 17;
+    chip.className = "status-chip " + (open ? "open" : "closed");
+    txt.textContent = open ? "Open now · Mon–Fri, 8am–5pm" : "Closed now · message us, we reply when we open";
+  } catch (e) {}
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+/* SCROLL REVEAL */
+const revealObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".service-card, .price-card, .review-card, .process-card, .document-card, .portfolio-card, .audience-item")
+  .forEach(function(el){ el.classList.add("reveal"); revealObserver.observe(el); });
+
+/* ===== POLISH: scroll progress, navbar state, scrollspy, menu a11y, back-to-top ===== */
+(function(){
+  var bar=document.createElement("div");bar.className="scroll-progress";document.body.appendChild(bar);
+  var top=document.createElement("button");top.className="to-top";top.setAttribute("aria-label","Back to top");top.innerHTML="&uarr;";
+  top.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});document.body.appendChild(top);
+  var nav=document.querySelector(".navbar"),mb=document.getElementById("menuBtn"),nl=document.getElementById("navLinks");
+  var links=[].slice.call(document.querySelectorAll("#navLinks a[href^='#']"));
+  var targets=links.map(function(a){return document.querySelector(a.getAttribute("href"));});
+  var ticking=false;
+  function update(){
+    var y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.transform="scaleX("+(h>0?Math.min(y/h,1):0)+")";
+    nav.classList.toggle("scrolled",y>10);
+    top.classList.toggle("show",y>700);
+    var cur=-1;targets.forEach(function(t,i){if(t&&t.getBoundingClientRect().top<=140)cur=i;});
+    if(h>0&&y>=h-4)cur=links.length-1;
+    links.forEach(function(a,i){var on=i===cur;a.classList.toggle("active",on);if(on)a.setAttribute("aria-current","true");else a.removeAttribute("aria-current");});
+    ticking=false;
+  }
+  addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
+  addEventListener("resize",update);update();
+  if(mb&&nl){
+    mb.setAttribute("aria-expanded","false");mb.setAttribute("aria-controls","navLinks");
+    mb.addEventListener("click",function(){var o=nl.classList.contains("open");mb.setAttribute("aria-expanded",o);mb.innerHTML=o?"<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-x\"/></svg>":"<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-menu\"/></svg>";});
+    links.forEach(function(a){a.addEventListener("click",function(){mb.setAttribute("aria-expanded","false");mb.innerHTML="<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-menu\"/></svg>";});});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&nl.classList.contains("open")){nl.classList.remove("open");mb.setAttribute("aria-expanded","false");mb.innerHTML="<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-menu\"/></svg>";}});
+    document.addEventListener("click",function(e){if(nl.classList.contains("open")&&!nl.contains(e.target)&&!mb.contains(e.target)){nl.classList.remove("open");mb.setAttribute("aria-expanded","false");mb.innerHTML="<svg class=\"ic\" aria-hidden=\"true\"><use href=\"#ic-menu\"/></svg>";}});
+  }
+})();
+
+/* ===== OFFER CARD: minimise / expand (collapsed by default on phones) ===== */
+(function(){
+  var box=document.getElementById("promoFloat");if(!box)return;
+  function set(c){box.classList.toggle("collapsed",c);}
+  if(matchMedia("(max-width:600px)").matches)set(true);
+  document.getElementById("promoClose").addEventListener("click",function(){set(true);});
+  document.getElementById("promoPill").addEventListener("click",function(){set(false);});
+})();
+
+/* mirror live offer values into the minimised pill */
+(function(){
+  function t(id){var e=document.getElementById(id);return e?e.textContent.trim():"";}
+  function p2(v){v=String(v);return v.length<2?"0"+v:v;}
+  function sync(){
+    var set=function(id,v){var e=document.getElementById(id);if(e&&e.textContent!==v)e.textContent=v;};
+    set("ppPrice",t("promoPrice"));
+    set("ppLabel",t("promoCountLabel"));
+    set("ppClock",p2(t("promoHours"))+":"+p2(t("promoMinutes"))+":"+p2(t("promoSeconds")));
+    var m=/^(\d+)\s+of/.exec(t("promoSpots"));
+    set("ppSpots",m?m[1]+" left":"");
+  }
+  sync();setInterval(sync,500);
+})();
+</script>
+
+</body>
+</html>
