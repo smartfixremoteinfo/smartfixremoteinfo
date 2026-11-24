@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SmartFix Remote provides professional remote IT support, managed technology services, CV design, document editing, graphic design and website development in Zimbabwe.">
+<meta name="description" content="SmartFix Remote provides professional remote IT support, managed technology services, CV design from $5, document typing and editing, graphic design and website development in Zimbabwe.">
 <meta name="theme-color" content="#071b35">
 <title>SmartFix Remote | IT Support & Digital Solutions</title>
 
@@ -154,6 +154,37 @@ section{padding:90px 0}
 .document-card h3{margin-bottom:12px}
 .document-card p{color:var(--muted);margin-bottom:18px}
 
+
+/* DOCUMENT PACKAGES (from flyer) */
+.doc-banner{max-width:860px;margin:0 auto 38px;padding:20px 26px;text-align:center;border-radius:20px;background:linear-gradient(135deg,#0b315c,#061528);color:#fff;box-shadow:var(--shadow)}
+.doc-banner strong{display:block;font-size:clamp(20px,3.4vw,28px);line-height:1.2}
+.doc-banner strong em{font-style:normal;color:var(--yellow)}
+.doc-banner span{display:block;margin-top:6px;font-size:13px;color:#b9cde2}
+.pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.pkg-card{position:relative;padding:30px;border-radius:24px;background:var(--surface);border:2px solid rgba(18,102,241,.55);display:flex;flex-direction:column;gap:10px}
+.pkg-card.orange{border-color:rgba(255,122,0,.65)}
+.pkg-card.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:24px;flex-wrap:wrap}
+.pkg-card.wide>div{flex:1;min-width:240px}
+.pkg-card.soft{border-color:var(--border)}
+.pkg-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.pkg-top h3{font-size:22px;line-height:1.15;margin:0}
+.pkg-price{flex-shrink:0;padding:8px 18px;border-radius:999px;font-weight:950;font-size:22px;color:#fff;background:#0b315c;white-space:nowrap}
+.orange .pkg-price{background:var(--orange)}
+.pkg-price.yellow{background:var(--yellow);color:#0b2545}
+.pkg-price.sm{font-size:15px}
+.pkg-list{list-style:none;margin:4px 0}
+.pkg-list li{padding:5px 0;font-size:14px;display:flex;gap:9px;align-items:flex-start}
+.pkg-list li::before{content:"\2713";color:var(--blue);font-weight:900}
+.orange .pkg-list li::before{color:var(--orange)}
+.pkg-tag{font-size:13px;font-style:italic;color:var(--muted);margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
+.pkg-card .btn{margin-top:6px;align-self:flex-start}
+.ready-cta{margin-top:30px;padding:26px;border-radius:22px;text-align:center;background:linear-gradient(135deg,#0b315c,#061528);color:#fff}
+.ready-cta h3{font-size:clamp(20px,3.5vw,28px);margin-bottom:6px}
+.ready-cta h3 em{font-style:normal;color:var(--yellow)}
+.ready-cta .ready-points{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin:12px 0 18px;font-size:13px;color:#d8e5f2}
+.student-strip{margin-top:16px;padding:14px 20px;border-radius:999px;text-align:center;font-weight:800;font-size:14px;background:var(--yellow);color:#0b2545}
+@media(max-width:700px){.pkg-grid{grid-template-columns:1fr}.pkg-card.wide{flex-direction:column;align-items:stretch}}
+
 /* PORTFOLIO */
 .portfolio-section{background:var(--surface2)}
 .portfolio-category{margin-bottom:55px}
@@ -163,6 +194,9 @@ section{padding:90px 0}
 .portfolio-preview{height:95px;border-radius:14px;background:linear-gradient(135deg,#0b315c,#1266f1,#19d3ff);margin-bottom:18px;position:relative;overflow:hidden}
 .portfolio-card strong{font-size:15px}
 .portfolio-card span{color:var(--muted);font-size:12px;margin-top:5px}
+.pf-price{display:inline-block;align-self:flex-start;margin-top:10px;padding:4px 12px;border-radius:999px;font-style:normal;font-weight:900;font-size:13px;background:rgba(18,102,241,.12);color:var(--blue)}
+.pf-incl{display:block;margin-top:8px;font-size:12px;line-height:1.5;color:var(--muted)}
+.pf-incl b{color:var(--text)}
 .portfolio-link{color:var(--blue);font-weight:800;font-size:13px;margin-top:12px}
 
 
@@ -409,10 +443,10 @@ section{padding:65px 0}
 <!-- PROMO BAR (top of page) -->
 <div class="promo-bar">
   <div class="container promo-bar-inner">
-    <span class="pb-badge">🔥 LIMITED OFFER</span>
+    <span class="pb-badge">🔥 FIRST 5 CLIENTS OF THE WEEK</span>
     <span><strong class="pb-title" id="promoTitle">Special SmartFix Offer</strong> <span class="pb-desc" id="promoDescription"></span></span>
-    <span class="pb-price" id="promoPrice">$15</span>
-    <span class="pb-timer" title="Offer ends on the last day of this month">⏳ <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
+    <span class="pb-price" id="promoPrice">30% OFF</span>
+    <span class="pb-timer" id="promoTimerBar" title="Time left in today's 2-hour offer window">⏳ <strong id="promoHours">00</strong>h <strong id="promoMinutes">00</strong>m <strong id="promoSeconds">00</strong>s</span>
     <a id="promoButton" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="pb-btn">Claim Offer ↗</a>
   </div>
 </div>
@@ -486,6 +520,7 @@ section{padding:65px 0}
         <span>⚡ Fast response</span>
         <span>🌐 100% remote</span>
         <span>💬 WhatsApp support</span>
+        <span>📄 CVs in 24 hours</span>
       </div>
     </div>
 
@@ -498,7 +533,8 @@ section{padding:65px 0}
         <li><span class="check">✓</span> Virus & Malware Removal</li>
         <li><span class="check">✓</span> Printer & Drivers Setup</li>
         <li><span class="check">✓</span> Software Installation</li>
-        <li><span class="check">✓</span> CV & Graphics Design</li>
+        <li><span class="check">✓</span> CVs from $5 &middot; 24-Hour Delivery</li>
+        <li><span class="check">✓</span> Graphics Design</li>
         <li><span class="check">✓</span> Website Development</li>
       </ul>
     </div>
@@ -510,7 +546,7 @@ section{padding:65px 0}
   <div class="container trust-grid">
     <div class="trust-item"><strong>⚡ Fast Support</strong><span>Quick assistance</span></div>
     <div class="trust-item"><strong>🌐 Remote Service</strong><span>No travelling required</span></div>
-    <div class="trust-item"><strong>🎨 Digital Design</strong><span>Professional results</span></div>
+    <div class="trust-item"><strong>📄 24-Hour CVs</strong><span>Confidential &amp; professional</span></div>
     <div class="trust-item"><strong>💬 WhatsApp</strong><span>Easy communication</span></div>
   </div>
 </div>
@@ -529,7 +565,7 @@ section{padding:65px 0}
       <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20my%20printer%20is%20not%20working." target="_blank" rel="noopener">🖨️ Printer not working</a>
       <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20software%20installed." target="_blank" rel="noopener">⚙️ Install software</a>
       <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20have%20a%20Word%20or%20Excel%20problem." target="_blank" rel="noopener">📝 Word / Excel problem</a>
-      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20CV." target="_blank" rel="noopener">📄 I need a CV</a>
+      <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20CV.%20READY" target="_blank" rel="noopener">📄 CV from $5</a>
       <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20logo%20or%20flyer." target="_blank" rel="noopener">🎨 Logo or flyer</a>
       <a class="chip" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20website." target="_blank" rel="noopener">🌐 I need a website</a>
     </div>
@@ -574,10 +610,10 @@ section{padding:65px 0}
       <div class="service-card"><div class="service-icon"><svg><use href="#i-shield"/></svg></div><h3>Virus & Malware Removal</h3><p>Identify and remove unwanted software, malware and common security threats.</p></div>
       <div class="service-card"><div class="service-icon"><svg><use href="#i-printer"/></svg></div><h3>Printer & Drivers Setup</h3><p>Printer installation, driver setup and troubleshooting.</p></div>
       <div class="service-card"><div class="service-icon"><svg><use href="#i-download"/></svg></div><h3>Software Installation</h3><p>Professional installation and configuration of supported software.</p></div>
-      <div class="service-card"><div class="service-icon"><svg><use href="#i-globe"/></svg></div><h3>Website Development</h3><p>Modern responsive websites for businesses, organisations and personal brands.</p></div>
-      <div class="service-card"><div class="service-icon"><svg><use href="#i-file"/></svg></div><h3>CV Designing</h3><p>Modern professional CVs, ATS-friendly CVs, editing and formatting.</p></div>
-      <div class="service-card"><div class="service-icon"><svg><use href="#i-palette"/></svg></div><h3>Graphics Designing</h3><p>Flyers, posters, logos, business cards, banners and social media graphics.</p></div>
-      <div class="service-card"><div class="service-icon"><svg><use href="#i-chart"/></svg></div><h3>Data Capturing & Documents</h3><p>Excel data capture, typing, document editing, formatting and PDF conversion.</p></div>
+      <div class="service-card"><div class="service-icon"><svg><use href="#i-globe"/></svg></div><h3>Website Development</h3><p>Modern responsive websites for businesses, organisations and personal brands. From $80.</p></div>
+      <div class="service-card"><div class="service-icon"><svg><use href="#i-file"/></svg></div><h3>CV Designing</h3><p>CV revamps from $5, ATS-friendly CVs, cover letters and diaspora CVs, delivered in 24 hours.</p></div>
+      <div class="service-card"><div class="service-icon"><svg><use href="#i-palette"/></svg></div><h3>Graphics Designing</h3><p>Flyers, posters, logos, business cards, banners and social media graphics. From $10.</p></div>
+      <div class="service-card"><div class="service-icon"><svg><use href="#i-chart"/></svg></div><h3>Data Capturing & Documents</h3><p>Excel data capture, typing from $1/page, document editing, formatting and PDF conversion.</p></div>
     </div>
   </div>
 </section>
@@ -617,6 +653,7 @@ section{padding:65px 0}
         <div class="price">$55 <small>/month</small></div>
         <p>For individuals and occasional support.</p>
         <ul class="price-list">
+          <li>✓ Free remote diagnosis</li>
           <li>✓ Up to 1 remote support session</li>
           <li>✓ Unlimited WhatsApp support</li>
           <li>✓ Monthly PC optimization</li>
@@ -628,9 +665,10 @@ section{padding:65px 0}
       <div class="price-card featured">
         <div class="popular-badge">MOST POPULAR</div>
         <h3>GROWTH PLAN</h3>
-        <div class="price">$200 <small>/month</small></div>
+        <div class="price">$100 <small>/month</small></div>
         <p>For small teams and growing businesses.</p>
         <ul class="price-list">
+          <li>✓ Free remote diagnosis</li>
           <li>✓ Up to 5 users</li>
           <li>✓ Up to 10 devices</li>
           <li>✓ Remote support up to 3 hours/day</li>
@@ -645,6 +683,7 @@ section{padding:65px 0}
         <div class="price">Quote</div>
         <p>Custom support for organisations and businesses.</p>
         <ul class="price-list">
+          <li>✓ Free remote diagnosis</li>
           <li>✓ Business IT support</li>
           <li>✓ Multiple devices</li>
           <li>✓ Consultation</li>
@@ -655,13 +694,14 @@ section{padding:65px 0}
     </div>
 
     <div class="single-prices">
-      <div class="single-price"><span>Remote Diagnosis</span><strong>$20</strong></div>
-      <div class="single-price"><span>Remote Support</span><strong>$25/hr</strong></div>
-      <div class="single-price"><span>Software Installation</span><strong>$15</strong></div>
-      <div class="single-price"><span>Virus Removal</span><strong>$25</strong></div>
-      <div class="single-price"><span>Windows Installation</span><strong>$30</strong></div>
-      <div class="single-price"><span>Linux / macOS</span><strong>$30</strong></div>
-      <div class="single-price"><span>Emergency Support</span><strong>$55</strong></div>
+      <div class="single-price"><span>Remote Diagnosis</span><strong>FREE</strong></div>
+      <div class="single-price"><span>Remote Support</span><strong>$8/hr</strong></div>
+      <div class="single-price"><span>Software Installation</span><strong>$10</strong></div>
+      <div class="single-price"><span>Productivity Software</span><strong>From $15</strong></div>
+      <div class="single-price"><span>Virus Removal</span><strong>$10</strong></div>
+      <div class="single-price"><span>Windows Installation</span><strong>$20</strong></div>
+      <div class="single-price"><span>Linux / macOS</span><strong>$20</strong></div>
+      <div class="single-price"><span>Emergency Support</span><strong>$30</strong></div>
     </div>
 
     <div class="payment-methods">
@@ -678,20 +718,68 @@ section{padding:65px 0}
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">DOCUMENT SERVICES</span>
-      <h2>Professional Documents</h2>
-      <p>Get your documents prepared, edited and formatted professionally.</p>
+      <h2>CV & Document Packages</h2>
+      <p>Professional document services, 100% remote, fast and reliable.</p>
     </div>
-    <div class="documents-grid">
-      <div class="document-card">
-        <h3>📄 CV & Career Services</h3>
-        <p>Professional modern CVs, ATS-friendly CVs, executive CVs, graduate CVs, editing and formatting.</p>
-        <a href="#portfolio" class="btn btn-primary">View CV Templates</a>
+
+    <div class="doc-banner">
+      <strong>Get Your CV &amp; Documents Revamped &mdash; <em>Delivered in 24 Hours!</em></strong>
+      <span>Quick turnaround &bull; Confidential &amp; professional</span>
+    </div>
+
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-top"><h3>Basic CV Revamp</h3><div class="pkg-price">$5</div></div>
+        <ul class="pkg-list">
+          <li>Modern, clean layout (PDF &amp; Word)</li>
+          <li>Spelling &amp; grammar fix</li>
+        </ul>
+        <div class="pkg-tag">Perfect for a quick professional refresh</div>
+        <a href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20want%20the%20Basic%20CV%20Revamp%20(%245)." target="_blank" rel="noopener" class="btn btn-primary">Get Basic Revamp ↗</a>
       </div>
-      <div class="document-card">
-        <h3>📝 Document Services</h3>
-        <p>Typing, editing, formatting, image-to-PDF, Word-to-PDF, PDF-to-Word, merge, split and document conversion.</p>
-        <a href="#contact" class="btn btn-primary">Request Service</a>
+
+      <div class="pkg-card orange">
+        <div class="pkg-top"><h3>The Job Hunter Bundle</h3><div class="pkg-price">$10</div></div>
+        <ul class="pkg-list">
+          <li>ATS-friendly CV</li>
+          <li>Tailored cover letter</li>
+          <li>Editable Word file</li>
+        </ul>
+        <div class="pkg-tag">Boost your applications &amp; get noticed</div>
+        <a href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20want%20the%20Job%20Hunter%20Bundle%20(%2410)." target="_blank" rel="noopener" class="btn btn-whatsapp">Get Job Hunter Bundle ↗</a>
       </div>
+
+      <div class="pkg-card wide">
+        <div>
+          <div class="pkg-top"><h3>🌍 Executive / Diaspora Package</h3><div class="pkg-price yellow">$15 &ndash; $20</div></div>
+          <ul class="pkg-list">
+            <li>International-standard CV (UK / SA / Canada format)</li>
+            <li>Cover letter + LinkedIn profile optimisation</li>
+          </ul>
+          <div class="pkg-tag">Tailored for international jobs, diaspora &amp; executive roles</div>
+        </div>
+        <a href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20want%20the%20Executive%20%2F%20Diaspora%20Package." target="_blank" rel="noopener" class="btn btn-primary">Get Executive Package ↗</a>
+      </div>
+
+      <div class="pkg-card wide soft">
+        <div>
+          <div class="pkg-top"><h3>📝 Typing, Formatting &amp; Editing</h3><div class="pkg-price sm">From $1 / page</div></div>
+          <ul class="pkg-list">
+            <li>Academic assignments &amp; business proposals</li>
+            <li>Company profiles &amp; dissertation formatting</li>
+            <li>Image-to-PDF, Word-to-PDF, PDF-to-Word, merge &amp; split</li>
+          </ul>
+          <div class="pkg-tag">Essays, reports, proposals &mdash; polished &amp; professional</div>
+        </div>
+        <a href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20typing%2C%20formatting%20or%20editing%20help." target="_blank" rel="noopener" class="btn btn-primary">Request Service ↗</a>
+      </div>
+    </div>
+
+    <div class="ready-cta">
+      <h3>DM me <em>&ldquo;READY&rdquo;</em> &mdash; Send your old CV now!</h3>
+      <div class="ready-points"><span>✓ We deliver within 24 hours</span><span>• Quick turnaround</span><span>• Confidential &amp; professional</span></div>
+      <a href="https://wa.me/263773092198?text=READY" target="_blank" rel="noopener" class="btn btn-whatsapp">Send &ldquo;READY&rdquo; on WhatsApp ↗</a>
+      <div class="student-strip">🎓 STUDENTS: Special discount available &mdash; ask about our local student discount!</div>
     </div>
   </div>
 </section>
@@ -720,26 +808,26 @@ section{padding:65px 0}
     <div class="portfolio-category cat-gfx">
       <h3>🎨 Graphics Design Samples</h3>
       <div class="portfolio-grid">
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column"><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:9px 8px;color:#fff"><div class="tx" style="font-size:6px;opacity:.85">GRAND OPENING</div><div class="tx" style="font-size:16px;margin-top:3px">50%<br>OFF</div></div><div style="flex:1;padding:7px 8px;position:relative"><i class="w100"></i><i class="w80"></i><i class="w60"></i><b style="position:absolute;right:7px;top:-13px;width:26px;height:26px;border-radius:50%;background:#ffbd2e;display:block"></b></div><div style="background:#ff7a00;color:#fff;font-size:6px;font-weight:900;text-align:center;padding:6px">CALL NOW</div></div></div><strong>Business Flyer</strong><span>Professional promotional flyer</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20flyer." target="_blank" rel="noopener">Start Design ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column;background:linear-gradient(160deg,#4c1d95,#be185d);color:#fff;padding:9px 8px;justify-content:space-between"><div class="tx" style="font-size:6px;letter-spacing:1.5px;opacity:.9">LIVE IN CONCERT</div><div class="tx" style="font-size:21px">NIGHT<br>FEST</div><div><div style="background:#ffbd2e;color:#4c1d95;font-weight:900;font-size:7px;padding:4px 6px;border-radius:3px;display:inline-block">FRI 8PM</div><i class="lt w60" style="margin-top:6px"></i></div></div></div><strong>Event Poster</strong><span>Attention-catching event graphics</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20event%20poster." target="_blank" rel="noopener">Start Design ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:118px;height:118px;flex-direction:column;align-items:center;justify-content:center;gap:8px"><b style="width:44px;height:44px;display:block;background:linear-gradient(135deg,#1266f1,#19d3ff);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></b><div class="tx" style="font-size:11px;color:#0b315c">BRANDNAME</div><i class="w40" style="height:2px;background:#19d3ff;margin:0"></i></div></div><strong>Business Logo</strong><span>Professional brand identity</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20logo." target="_blank" rel="noopener">Start Design ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div style="position:relative;width:142px;height:112px;flex-shrink:0"><div style="position:absolute;left:0;top:0;width:112px;height:66px;background:linear-gradient(135deg,#0b315c,#1266f1);border-radius:5px;box-shadow:0 6px 14px rgba(0,0,0,.3);padding:8px"><b style="width:14px;height:14px;border-radius:4px;background:#19d3ff;display:block"></b><div class="tx" style="font-size:7px;color:#fff;margin-top:8px">YOUR BRAND</div><i class="lt w50"></i></div><div style="position:absolute;right:0;bottom:0;width:112px;height:66px;background:#fff;border-radius:5px;box-shadow:0 6px 14px rgba(0,0,0,.3);padding:9px"><i class="h w60"></i><i class="w40"></i><i class="w80" style="margin-top:9px"></i><i class="w60"></i><i class="w70"></i></div></div></div><strong>Business Card</strong><span>Professional business cards</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20business%20cards." target="_blank" rel="noopener">Start Design ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:118px;height:118px;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,#f43f5e,#ff7a00,#ffbd2e);color:#fff;padding:9px"><div style="display:flex;align-items:center;gap:5px"><b style="width:14px;height:14px;border-radius:50%;background:#fff;display:block"></b><i class="lt w40" style="margin:0"></i></div><div class="tx" style="font-size:20px">SUMMER<br>SALE</div><div style="display:flex;justify-content:space-between;align-items:center"><div style="background:#fff;color:#f43f5e;font-size:6px;font-weight:900;padding:4px 7px;border-radius:10px">SHOP NOW</div><span style="font-size:11px">♥</span></div></div></div><strong>Social Media Graphic</strong><span>Social media promotional graphics</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20social%20media%20graphics." target="_blank" rel="noopener">Start Design ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:172px;height:64px;align-items:center;justify-content:space-between;padding:0 10px;background:linear-gradient(90deg,#0b315c,#1266f1);color:#fff"><div><div class="tx" style="font-size:13px">YOUR BRAND</div><i class="lt w80" style="margin-top:5px"></i></div><div style="background:#ffbd2e;color:#0b315c;font-size:7px;font-weight:900;padding:6px 8px;border-radius:4px">LEARN MORE</div></div></div><strong>Business Banner</strong><span>Large-format business graphics</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20banner." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column"><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:9px 8px;color:#fff"><div class="tx" style="font-size:6px;opacity:.85">GRAND OPENING</div><div class="tx" style="font-size:16px;margin-top:3px">50%<br>OFF</div></div><div style="flex:1;padding:7px 8px;position:relative"><i class="w100"></i><i class="w80"></i><i class="w60"></i><b style="position:absolute;right:7px;top:-13px;width:26px;height:26px;border-radius:50%;background:#ffbd2e;display:block"></b></div><div style="background:#ff7a00;color:#fff;font-size:6px;font-weight:900;text-align:center;padding:6px">CALL NOW</div></div></div><strong>Business Flyer</strong><span>Professional promotional flyer</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20flyer." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="flex-direction:column;background:linear-gradient(160deg,#4c1d95,#be185d);color:#fff;padding:9px 8px;justify-content:space-between"><div class="tx" style="font-size:6px;letter-spacing:1.5px;opacity:.9">LIVE IN CONCERT</div><div class="tx" style="font-size:21px">NIGHT<br>FEST</div><div><div style="background:#ffbd2e;color:#4c1d95;font-weight:900;font-size:7px;padding:4px 6px;border-radius:3px;display:inline-block">FRI 8PM</div><i class="lt w60" style="margin-top:6px"></i></div></div></div><strong>Event Poster</strong><span>Attention-catching event graphics</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20event%20poster." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:118px;height:118px;flex-direction:column;align-items:center;justify-content:center;gap:8px"><b style="width:44px;height:44px;display:block;background:linear-gradient(135deg,#1266f1,#19d3ff);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></b><div class="tx" style="font-size:11px;color:#0b315c">BRANDNAME</div><i class="w40" style="height:2px;background:#19d3ff;margin:0"></i></div></div><strong>Business Logo</strong><span>Professional brand identity</span><em class="pf-price">$15</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20logo." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div style="position:relative;width:142px;height:112px;flex-shrink:0"><div style="position:absolute;left:0;top:0;width:112px;height:66px;background:linear-gradient(135deg,#0b315c,#1266f1);border-radius:5px;box-shadow:0 6px 14px rgba(0,0,0,.3);padding:8px"><b style="width:14px;height:14px;border-radius:4px;background:#19d3ff;display:block"></b><div class="tx" style="font-size:7px;color:#fff;margin-top:8px">YOUR BRAND</div><i class="lt w50"></i></div><div style="position:absolute;right:0;bottom:0;width:112px;height:66px;background:#fff;border-radius:5px;box-shadow:0 6px 14px rgba(0,0,0,.3);padding:9px"><i class="h w60"></i><i class="w40"></i><i class="w80" style="margin-top:9px"></i><i class="w60"></i><i class="w70"></i></div></div></div><strong>Business Card</strong><span>Professional business cards</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20business%20cards." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:118px;height:118px;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,#f43f5e,#ff7a00,#ffbd2e);color:#fff;padding:9px"><div style="display:flex;align-items:center;gap:5px"><b style="width:14px;height:14px;border-radius:50%;background:#fff;display:block"></b><i class="lt w40" style="margin:0"></i></div><div class="tx" style="font-size:20px">SUMMER<br>SALE</div><div style="display:flex;justify-content:space-between;align-items:center"><div style="background:#fff;color:#f43f5e;font-size:6px;font-weight:900;padding:4px 7px;border-radius:10px">SHOP NOW</div><span style="font-size:11px">♥</span></div></div></div><strong>Social Media Graphic</strong><span>Social media promotional graphics</span><em class="pf-price">$10</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20social%20media%20graphics." target="_blank" rel="noopener">Start Design ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="pp" style="width:172px;height:64px;align-items:center;justify-content:space-between;padding:0 10px;background:linear-gradient(90deg,#0b315c,#1266f1);color:#fff"><div><div class="tx" style="font-size:13px">YOUR BRAND</div><i class="lt w80" style="margin-top:5px"></i></div><div style="background:#ffbd2e;color:#0b315c;font-size:7px;font-weight:900;padding:6px 8px;border-radius:4px">LEARN MORE</div></div></div><strong>Business Banner</strong><span>Large-format business graphics</span><em class="pf-price">$15</em><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20banner." target="_blank" rel="noopener">Start Design ↗</a></div>
       </div>
     </div>
 
     <div class="portfolio-category cat-web">
       <h3>🌐 Website Templates & Samples</h3>
       <div class="portfolio-grid">
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:10px 9px;color:#fff"><div class="tx" style="font-size:9px">Grow Your<br>Business</div><div style="background:#fff;color:#1266f1;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">GET STARTED</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b></div></div></div><strong>Business Website</strong><span>Modern business website</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:#0b2545;color:#fff;display:flex;gap:6px;align-items:center;padding:9px"><div style="flex:1"><div class="tx" style="font-size:8px">Global<br>Solutions</div><div style="background:#19d3ff;color:#0b2545;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">CONTACT</div></div><b class="sq" style="width:44px;height:44px;background:linear-gradient(135deg,#1266f1,#19d3ff)"></b></div><div style="display:flex;justify-content:space-around;padding:8px 4px;text-align:center"><div class="tx" style="font-size:9px;color:#1266f1">25+<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">120<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">10K<i class="w100" style="margin:3px 0 0"></i></div></div></div></div><strong>Company / Corporate Website</strong><span>Professional company website</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20corporate%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="text-align:center;padding:7px 8px 0"><b class="av" style="width:26px;height:26px;background:linear-gradient(135deg,#8b5cf6,#ec4899)"></b><i class="h w50" style="margin:0 auto 3px;background:#4c1d95"></i><i class="w40" style="margin:0 auto"></i></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:28px;background:#c4b5fd"></b><b class="sq" style="flex:1;height:28px;background:#f9a8d4"></b><b class="sq" style="flex:1;height:28px;background:#a5b4fc"></b></div></div></div><strong>Personal Portfolio</strong><span>Showcase your work and skills</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20personal%20portfolio%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff;padding:9px;text-align:center"><div style="position:relative;width:14px;height:20px;margin:0 auto 5px"><b style="position:absolute;left:5px;top:0;width:4px;height:20px;background:#fcd34d;display:block"></b><b style="position:absolute;left:0;top:5px;width:14px;height:4px;background:#fcd34d;display:block"></b></div><div class="tx" style="font-size:7px">WELCOME HOME</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b></div></div></div><strong>Church / Ministry Website</strong><span>Professional ministry website</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20church%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#16a34a,#84cc16);color:#fff;padding:10px 9px"><div class="tx" style="font-size:9px">Enrol<br>Today</div><div style="background:#facc15;color:#14532d;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">APPLY NOW</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:26px;background:#dcfce7"></b><b class="sq" style="flex:1;height:26px;background:#fef9c3"></b><b class="sq" style="flex:1;height:26px;background:#dbeafe"></b><b class="sq" style="flex:1;height:26px;background:#fce7f3"></b></div></div></div><strong>School / Education Website</strong><span>Modern education website</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20school%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div style="flex:1;background:#1c1917;color:#fff;display:flex;align-items:center;gap:8px;padding:9px"><b style="width:46px;height:46px;border-radius:50%;flex-shrink:0;display:block;background:radial-gradient(circle,#fbbf24 0 28%,#f97316 29% 58%,#fff 59% 68%,#e7e5e4 69%)"></b><div style="flex:1"><div class="tx" style="font-size:9px">Fresh &amp;<br>Tasty</div><div style="background:#f97316;color:#fff;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">BOOK A TABLE</div></div></div><div style="background:#292524;padding:7px 9px"><i class="w80" style="background:#57534e"></i><i class="w60" style="background:#57534e"></i></div></div></div><strong>Restaurant Website</strong><span>Digital restaurant presence</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20restaurant%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:#fee2e2;color:#dc2626;font-size:5px;font-weight:900;text-align:center;padding:4px">FREE DELIVERY  •  SALE UP TO 40%</div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:24px;background:#bfdbfe"></b><b class="sq" style="flex:1;height:24px;background:#fde68a"></b><b class="sq" style="flex:1;height:24px;background:#bbf7d0"></b></div><div style="display:flex;gap:5px;padding:0 8px"><i class="w30" style="flex:1;margin:0;background:#1266f1"></i><i style="flex:1;margin:0;background:#1266f1"></i><i style="flex:1;margin:0;background:#1266f1"></i></div></div></div><strong>Online Store</strong><span>E-commerce website solution</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20online%20store." target="_blank" rel="noopener">Request Website ↗</a></div>
-        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="padding:9px;text-align:center"><div class="tx" style="font-size:9px;color:#0b315c">Get More<br>Customers Fast</div><div style="display:flex;gap:3px;margin:8px 8px 0"><i style="flex:1;height:11px;margin:0;border:1px solid #cbd5e1;background:#fff;border-radius:3px"></i><i style="width:36px;height:11px;margin:0;background:#ff7a00;border-radius:3px"></i></div><div style="color:#ffbd2e;font-size:9px;letter-spacing:2px;margin-top:8px">★★★★★</div><i class="w60" style="margin:4px auto 0"></i></div></div></div><strong>Business Landing Page</strong><span>High-converting landing page</span><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20landing%20page." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#1266f1,#19d3ff);padding:10px 9px;color:#fff"><div class="tx" style="font-size:9px">Grow Your<br>Business</div><div style="background:#fff;color:#1266f1;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">GET STARTED</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b><b class="sq" style="flex:1;height:26px;background:#e2e8f0"></b></div></div></div><strong>Business Website</strong><span>Modern business website</span><em class="pf-price">From $150</em><small class="pf-incl"><b>Package includes:</b> Up to 5 pages, responsive design, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:#0b2545;color:#fff;display:flex;gap:6px;align-items:center;padding:9px"><div style="flex:1"><div class="tx" style="font-size:8px">Global<br>Solutions</div><div style="background:#19d3ff;color:#0b2545;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">CONTACT</div></div><b class="sq" style="width:44px;height:44px;background:linear-gradient(135deg,#1266f1,#19d3ff)"></b></div><div style="display:flex;justify-content:space-around;padding:8px 4px;text-align:center"><div class="tx" style="font-size:9px;color:#1266f1">25+<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">120<i class="w100" style="margin:3px 0 0"></i></div><div class="tx" style="font-size:9px;color:#1266f1">10K<i class="w100" style="margin:3px 0 0"></i></div></div></div></div><strong>Company / Corporate Website</strong><span>Professional company website</span><em class="pf-price">From $150</em><small class="pf-incl"><b>Package includes:</b> Up to 5 pages, responsive design, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20corporate%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="text-align:center;padding:7px 8px 0"><b class="av" style="width:26px;height:26px;background:linear-gradient(135deg,#8b5cf6,#ec4899)"></b><i class="h w50" style="margin:0 auto 3px;background:#4c1d95"></i><i class="w40" style="margin:0 auto"></i></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:28px;background:#c4b5fd"></b><b class="sq" style="flex:1;height:28px;background:#f9a8d4"></b><b class="sq" style="flex:1;height:28px;background:#a5b4fc"></b></div></div></div><strong>Personal Portfolio</strong><span>Showcase your work and skills</span><em class="pf-price">From $100</em><small class="pf-incl"><b>Package includes:</b> Up to 3 pages, responsive design, portfolio gallery, contact form, WhatsApp button</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20personal%20portfolio%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff;padding:9px;text-align:center"><div style="position:relative;width:14px;height:20px;margin:0 auto 5px"><b style="position:absolute;left:5px;top:0;width:4px;height:20px;background:#fcd34d;display:block"></b><b style="position:absolute;left:0;top:5px;width:14px;height:4px;background:#fcd34d;display:block"></b></div><div class="tx" style="font-size:7px">WELCOME HOME</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b><b class="sq" style="flex:1;height:24px;background:#ede9fe"></b></div></div></div><strong>Church / Ministry Website</strong><span>Professional ministry website</span><em class="pf-price">From $150</em><small class="pf-incl"><b>Package includes:</b> Up to 5 pages, responsive design, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20church%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:linear-gradient(135deg,#16a34a,#84cc16);color:#fff;padding:10px 9px"><div class="tx" style="font-size:9px">Enrol<br>Today</div><div style="background:#facc15;color:#14532d;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">APPLY NOW</div></div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:26px;background:#dcfce7"></b><b class="sq" style="flex:1;height:26px;background:#fef9c3"></b><b class="sq" style="flex:1;height:26px;background:#dbeafe"></b><b class="sq" style="flex:1;height:26px;background:#fce7f3"></b></div></div></div><strong>School / Education Website</strong><span>Modern education website</span><em class="pf-price">From $200</em><small class="pf-incl"><b>Package includes:</b> Up to 7 pages, responsive design, gallery, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20school%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div style="flex:1;background:#1c1917;color:#fff;display:flex;align-items:center;gap:8px;padding:9px"><b style="width:46px;height:46px;border-radius:50%;flex-shrink:0;display:block;background:radial-gradient(circle,#fbbf24 0 28%,#f97316 29% 58%,#fff 59% 68%,#e7e5e4 69%)"></b><div style="flex:1"><div class="tx" style="font-size:9px">Fresh &amp;<br>Tasty</div><div style="background:#f97316;color:#fff;font-size:5px;font-weight:900;padding:3px 6px;border-radius:3px;display:inline-block;margin-top:6px">BOOK A TABLE</div></div></div><div style="background:#292524;padding:7px 9px"><i class="w80" style="background:#57534e"></i><i class="w60" style="background:#57534e"></i></div></div></div><strong>Restaurant Website</strong><span>Digital restaurant presence</span><em class="pf-price">From $200</em><small class="pf-incl"><b>Package includes:</b> Up to 7 pages, responsive design, gallery, contact form, WhatsApp button, Google Maps location</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20restaurant%20website." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="background:#fee2e2;color:#dc2626;font-size:5px;font-weight:900;text-align:center;padding:4px">FREE DELIVERY  •  SALE UP TO 40%</div><div style="display:flex;gap:5px;padding:7px 8px"><b class="sq" style="flex:1;height:24px;background:#bfdbfe"></b><b class="sq" style="flex:1;height:24px;background:#fde68a"></b><b class="sq" style="flex:1;height:24px;background:#bbf7d0"></b></div><div style="display:flex;gap:5px;padding:0 8px"><i class="w30" style="flex:1;margin:0;background:#1266f1"></i><i style="flex:1;margin:0;background:#1266f1"></i><i style="flex:1;margin:0;background:#1266f1"></i></div></div></div><strong>Online Store</strong><span>E-commerce website solution</span><em class="pf-price">From $250</em><small class="pf-incl"><b>Package includes:</b> Product catalogue, shopping-style pages, WhatsApp ordering, responsive design</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20an%20online%20store." target="_blank" rel="noopener">Request Website ↗</a></div>
+        <div class="portfolio-card"><div class="portfolio-preview mk"><div class="br"><div class="bb"><s></s><s></s><s></s></div><div class="nv"><i></i><i></i><i></i><i></i></div><div style="padding:9px;text-align:center"><div class="tx" style="font-size:9px;color:#0b315c">Get More<br>Customers Fast</div><div style="display:flex;gap:3px;margin:8px 8px 0"><i style="flex:1;height:11px;margin:0;border:1px solid #cbd5e1;background:#fff;border-radius:3px"></i><i style="width:36px;height:11px;margin:0;background:#ff7a00;border-radius:3px"></i></div><div style="color:#ffbd2e;font-size:9px;letter-spacing:2px;margin-top:8px">★★★★★</div><i class="w60" style="margin:4px auto 0"></i></div></div></div><strong>Business Landing Page</strong><span>High-converting landing page</span><em class="pf-price">From $80</em><small class="pf-incl"><b>Package includes:</b> 1-page responsive landing page, contact form, WhatsApp button</small><a class="portfolio-link" href="https://wa.me/263773092198?text=Hello%20SmartFix%2C%20I%20need%20a%20business%20landing%20page." target="_blank" rel="noopener">Request Website ↗</a></div>
       </div>
     </div>
 
@@ -820,17 +908,17 @@ section{padding:65px 0}
 <section class="smartfix-promo">
   <div class="container">
     <div class="promo-inner">
-      <div class="promo-badge">🔥 LIMITED-TIME PROMOTION</div>
+      <div class="promo-badge">🔥 FIRST 5 CLIENTS OF THE WEEK</div>
       <h2 id="promoTitleB">Special SmartFix Offer</h2>
       <p id="promoDescriptionB">Get professional digital support at a special promotional rate.</p>
-      <div class="countdown">
+      <div class="countdown" id="promoTimerSec">
         <div><strong id="promoHoursB">00</strong><span>HRS</span></div>
         <div><strong id="promoMinutesB">00</strong><span>MIN</span></div>
         <div><strong id="promoSecondsB">00</strong><span>SEC</span></div>
       </div>
-      <div class="promo-price"><span id="promoPriceB">$15</span></div>
+      <div class="promo-price"><span id="promoPriceB">30% OFF</span></div>
       <a id="promoButtonB" href="https://wa.me/263773092198" target="_blank" rel="noopener" class="promo-btn">Claim Offer ↗</a>
-      <small>Offer ends on the last day of this month.</small>
+      <small id="promoNote">For the first 5 clients of the week. Open 2 hours a day, Mon&ndash;Fri, 8:00&ndash;10:00 AM Zimbabwe time. Excludes monthly plans and emergency support.</small>
     </div>
   </div>
 </section>
@@ -897,9 +985,12 @@ section{padding:65px 0}
       <details><summary>How does remote support work?</summary><p>Message us on WhatsApp and explain the problem. If it can be fixed remotely, we arrange a session and connect to your computer over the internet, so you don't need to travel anywhere.</p></details>
       <details><summary>What do I need for remote support?</summary><p>A working internet connection and a computer that can start up. If your computer won't turn on at all, tell us first so we can advise you.</p></details>
       <details><summary>What are your working hours?</summary><p>Monday to Friday, 8:00 AM to 5:00 PM. You can message us on WhatsApp at any time, and we'll reply during working hours.</p></details>
-      <details><summary>How much does it cost?</summary><p>Remote diagnosis is $20 and remote support is $25 per hour. Single services like virus removal or Windows installation have fixed prices, shown in the pricing section above.</p></details>
+      <details><summary>How much does it cost?</summary><p>Remote diagnosis is free and remote support is $8 per hour. Emergency support is $30. Single services like virus removal ($10), software installation ($10, productivity software from $15) or Windows installation ($20) have fixed prices, shown in the pricing section above.</p></details>
       <details><summary>How do I pay?</summary><p>We accept EcoCash, InnBucks and bank transfer. Message us on WhatsApp and we'll send you the payment details once we've agreed on the service and price.</p></details>
-      <details><summary>Can you help with CVs and documents?</summary><p>Yes. We design modern and ATS-friendly CVs and also handle typing, editing, formatting and PDF conversion. Send us your details on WhatsApp to get started.</p></details>
+      <details><summary>Can you help with CVs and documents?</summary><p>Yes. We offer a Basic CV Revamp ($5), the Job Hunter Bundle ($10), an Executive / Diaspora Package ($15 to $20) and typing, formatting and editing from $1 per page. Send us your old CV on WhatsApp to get started.</p></details>
+      <details><summary>How fast do you deliver CVs and documents?</summary><p>We deliver within 24 hours. Your documents are kept confidential and handled professionally.</p></details>
+      <details><summary>What is the difference between your CV packages?</summary><p>The Basic CV Revamp ($5) gives you a modern, clean layout in PDF and Word with spelling and grammar fixes. The Job Hunter Bundle ($10) adds an ATS-friendly CV, a tailored cover letter and an editable Word file. The Executive / Diaspora Package ($15 to $20) is built to international standards (UK, SA or Canada format) and includes a cover letter and LinkedIn profile optimisation.</p></details>
+      <details><summary>Do you offer a student discount?</summary><p>Yes. Students get a special local discount. Message us on WhatsApp and ask about the student discount before you order.</p></details>
       <details><summary>Is remote support safe?</summary><p>Yes. Nothing connects until you open our link and approve the request, you watch everything we do live, and you can stop the session at any moment. <a href="#secure" style="color:var(--blue);font-weight:700">See exactly how we connect</a>.</p></details>
       <details><summary>Will you see my personal files?</summary><p>We only work on the problem you asked us to fix. You are watching your screen the whole time, and we recommend closing banking, email and personal files before we start.</p></details>
       <details><summary>Do I need to install anything?</summary><p>In most cases you only open the link we send and accept the request. If something needs to be downloaded, we guide you step by step on WhatsApp.</p></details>
@@ -908,9 +999,10 @@ section{padding:65px 0}
       <details><summary>What if my problem cannot be fixed remotely?</summary><p>We will tell you honestly. Hardware faults such as a broken screen or a failing hard drive need a physical repair, and we will advise you on the best next step.</p></details>
       <details><summary>Which computers and systems do you support?</summary><p>We work on Windows, Linux and macOS computers. If you have a phone, tablet or another device, message us and we will tell you whether we can help.</p></details>
       <details><summary>Will I lose my files if you reinstall Windows?</summary><p>Before any installation we ask what you need to keep, so we can plan around it. Where possible, back up your important files first.</p></details>
-      <details><summary>Do you offer monthly support for businesses?</summary><p>Yes. Our Growth Plan is $200 per month for small teams, the Pay-As-You-Go plan is $55 per month for individuals, and larger organisations can request a custom quote. See the IT Plans section for the details.</p></details>
-      <details><summary>How much does a website cost?</summary><p>The price depends on the number of pages and the features you need, so we give you a quote after you tell us what you want. Message us on WhatsApp to start.</p></details>
-      <details><summary>What do I send you for a CV?</summary><p>Send your contact details, work history, education, skills and the type of job you are applying for. We will format it as a modern or ATS-friendly CV, and you can tell us which file format you need, such as Word or PDF.</p></details>
+      <details><summary>Do you offer monthly support for businesses?</summary><p>Yes. Our Growth Plan is $100 per month for small teams, the Pay-As-You-Go plan is $55 per month for individuals, and larger organisations can request a custom quote. See the IT Plans section for the details.</p></details>
+      <details><summary>How much do graphics designs cost?</summary><p>Flyers, posters, business cards and social media graphics are $10 each. Logos and banners are $15 each. Message us on WhatsApp to get started.</p></details>
+      <details><summary>How much does a website cost?</summary><p>Websites start from $80 for a landing page, $100 for a personal portfolio, $150 for a business, company or church site, $200 for a school or restaurant site and $250 for an online store. Each package includes responsive design, a contact form and a WhatsApp button, with page counts and extras listed on each website sample. The final price depends on your pages and features, so we confirm a quote after you tell us what you want.</p></details>
+      <details><summary>What do I send you for a CV?</summary><p>Send your contact details, work history, education, skills and the type of job you are applying for. Just send your old CV and message us &ldquo;READY&rdquo; on WhatsApp. We will revamp it as a modern or ATS-friendly CV and deliver within 24 hours, in the file format you need, such as Word or PDF.</p></details>
       <details><summary>Can you help customers outside Chegutu?</summary><p>Yes. Remote support and online design work only need a good internet connection, so you can be anywhere. We will agree on payment together before we start.</p></details>
     </div>
   </div>
@@ -963,11 +1055,14 @@ section{padding:65px 0}
               <option>Virus & Malware Removal</option>
               <option>Printer & Drivers Setup</option>
               <option>Software Installation</option>
-              <option>Website Development</option>
-              <option>CV Designing</option>
-              <option>Graphics Designing</option>
+              <option>Website Development (from $80)</option>
+              <option>Basic CV Revamp ($5)</option>
+              <option>Job Hunter Bundle ($10)</option>
+              <option>Executive / Diaspora Package ($15 - $20)</option>
+              <option>CV Designing (Other)</option>
+              <option>Graphics Designing (from $10)</option>
               <option>Data Capturing</option>
-              <option>Document Editing</option>
+              <option>Typing, Formatting &amp; Editing (from $1/page)</option>
               <option>Other</option>
             </select>
           </div>
@@ -1103,15 +1198,9 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(function(link){
   });
 });
 
-/* MONTHLY PROMOTION (ends on the last day of the month) */
+/* PROMOTION TEXT (30% offer, first 5 clients of the week, 2-hour daily window) */
 const smartfixPromotions = [
-  { title:"Software Installation Special", description:"Get professional software installation and setup remotely.", price:"$15", service:"Software Installation" },
-  { title:"Virus Removal Special", description:"Remove viruses and malware and get your computer running smoothly.", price:"$25", service:"Virus & Malware Removal" },
-  { title:"Windows Installation Special", description:"Professional Windows installation and setup.", price:"$30", service:"Windows Installation" },
-  { title:"Remote IT Support Special", description:"Get fast professional assistance without travelling.", price:"$25/hr", service:"Remote IT Support" },
-  { title:"Professional CV Special", description:"Upgrade your CV with a modern, professional and ATS-friendly design.", price:"$15", service:"CV Designing" },
-  { title:"Graphics Design Special", description:"Professional flyers, posters, logos and business graphics.", price:"$15", service:"Graphics Designing" },
-  { title:"Website Development Special", description:"Get your professional business website started with SmartFix.", price:"Quote", service:"Website Development" }
+  { title:"30% OFF For Our First 5 Clients Of The Week", description:"Open 2 hours a day (8:00\u201310:00 AM), for the first 5 clients of the week, on one-off IT services, CV & document packages, graphics design and websites. Monthly IT plans and emergency support are not included.", price:"30% OFF", service:"any eligible service" }
 ];
 
 let currentPromo = null;
@@ -1133,7 +1222,7 @@ function chooseRandomPromotion(){
   setText("promoPrice", currentPromo.price);
 
   const href = "https://wa.me/263773092198?text=" +
-    encodeURIComponent("Hello SmartFix, I am interested in the " + currentPromo.service + " promotional offer.");
+    encodeURIComponent("Hello SmartFix, I want the 30% discount for the first 5 clients of the week. The service I need is: ");
   ["promoButton", "promoButtonB"].forEach(function(id){
     const el = document.getElementById(id);
     if (el) el.href = href;
@@ -1142,53 +1231,66 @@ function chooseRandomPromotion(){
   promoEndTime = new Date(now.getFullYear(), now.getMonth() + 1, 1).getTime() - 1000;
 }
 
+/* FIRST 5 CLIENTS OF THE WEEK
+   The offer window is open 2 hours a day, Monday to Friday, 8:00 AM to 10:00 AM Zimbabwe time (UTC+2).
+   The countdown only runs inside that window; the rest of the time it shows when the next window opens. */
+const HARARE_OFFSET_MS = 2 * 60 * 60 * 1000;
+const HOUR = 3600 * 1000;
+const DAY = 24 * HOUR;
+const WINDOW_START_H = 8;
+const WINDOW_END_H = 10;
+
+function offerWindow(shifted){
+  const d = new Date(shifted);
+  const midnight = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  let day = midnight;
+  let dow = d.getUTCDay();
+  // after today's window closes (or on a weekend), move to the next weekday
+  if (shifted >= day + WINDOW_END_H * HOUR || dow === 0 || dow === 6) {
+    do { day += DAY; dow = new Date(day).getUTCDay(); } while (dow === 0 || dow === 6);
+  }
+  return { opens: day + WINDOW_START_H * HOUR, closes: day + WINDOW_END_H * HOUR };
+}
+
+function toggleTimers(show){
+  ["promoTimerBar","promoTimerSec"].forEach(function(id){
+    const el = document.getElementById(id);
+    if (el) el.style.display = show ? "" : "none";
+  });
+}
+
 function updatePromotionTimer(){
   if (!promoEndTime) return;
-  let remaining = promoEndTime - Date.now();
-  if (remaining <= 0) {
-    chooseRandomPromotion();
-    remaining = promoEndTime - Date.now();
-  }
-  const totalSeconds = Math.floor(remaining / 1000);
-  setText("promoHours", String(Math.floor(totalSeconds / 3600)).padStart(2,"0"));
-  setText("promoMinutes", String(Math.floor((totalSeconds % 3600) / 60)).padStart(2,"0"));
-  setText("promoSeconds", String(totalSeconds % 60).padStart(2,"0"));
-}
+  if (promoEndTime - Date.now() <= 0) chooseRandomPromotion();
 
-chooseRandomPromotion();
-updatePromotionTimer();
-setInterval(updatePromotionTimer, 1000);
+  const shifted = Date.now() + HARARE_OFFSET_MS;
+  const w = offerWindow(shifted);
+  const live = shifted >= w.opens && shifted < w.closes;
+  const note = document.getElementById("promoNote");
+  const liveHref = "https://wa.me/263773092198?text=" +
+    encodeURIComponent("Hello SmartFix, I want the 30% discount for the first 5 clients of the week. The service I need is: ");
+  const offHref = "https://wa.me/263773092198?text=" +
+    encodeURIComponent("Hello SmartFix, please tell me when the next 30% discount window opens.");
 
-/* OPEN / CLOSED STATUS (Zimbabwe time) */
-function updateStatus(){
-  const chip = document.getElementById("statusChip");
-  const txt = document.getElementById("statusText");
-  if (!chip || !txt) return;
-  try {
-    const parts = new Intl.DateTimeFormat("en-GB", {timeZone:"Africa/Harare", weekday:"short", hour:"numeric", hour12:false}).formatToParts(new Date());
-    const wd = parts.find(function(x){ return x.type === "weekday"; }).value;
-    const h = parseInt(parts.find(function(x){ return x.type === "hour"; }).value, 10) % 24;
-    const open = ["Mon","Tue","Wed","Thu","Fri"].indexOf(wd) > -1 && h >= 8 && h < 17;
-    chip.className = "status-chip " + (open ? "open" : "closed");
-    txt.textContent = open ? "Open now · Mon–Fri, 8am–5pm" : "Closed now · message us, we reply when we open";
-  } catch (e) {}
-}
-updateStatus();
-setInterval(updateStatus, 60000);
-
-/* SCROLL REVEAL */
-const revealObserver = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
-    }
+  ["promoButton","promoButtonB"].forEach(function(id){
+    const el = document.getElementById(id);
+    if (el) { el.href = live ? liveHref : offHref; el.textContent = live ? "Claim Offer \u2197" : "Ask About It \u2197"; }
   });
-}, { threshold: 0.12 });
+  toggleTimers(live);
 
-document.querySelectorAll(".service-card, .price-card, .review-card, .process-card, .document-card, .portfolio-card, .audience-item")
-  .forEach(function(el){ el.classList.add("reveal"); revealObserver.observe(el); });
-</script>
+  if (!live) {
+    const when = new Date(w.opens).toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", timeZone:"UTC" });
+    setText("promoTitle", "Next 30% OFF window: " + when + ", 8:00 AM");
+    setText("promoPrice", "COMING SOON");
+    setText("promoDescription", "Open 2 hours a day (8:00\u201310:00 AM Zimbabwe time) for the first 5 clients of the week.");
+    if (note) note.textContent = "The 30% offer is for the first 5 clients of the week and is open 2 hours a day, Mon\u2013Fri, 8:00\u201310:00 AM. Excludes monthly plans and emergency support.";
+    return;
+  }
 
-</body>
-</html>
+  setText("promoTitle", currentPromo.title);
+  setText("promoPrice", currentPromo.price);
+  setText("promoDescription", currentPromo.description);
+  if (note) note.textContent = "30% off for the first 5 clients of the week (excludes monthly plans and emergency support). Today's window closes at 10:00 AM, Zimbabwe time.";
+
+  const rem = Math.floor((w.closes - shifted) / 1000);
+  setText("promoHours",
